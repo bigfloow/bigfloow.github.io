@@ -1240,11 +1240,6 @@ img {
     padding: 15px 3% !important;
 }
 
-/* Padding pour le body - Ajustez ces valeurs */
-body {
-    padding-top: 80px !important;
-}
-
 /* Supprimer le padding-top sur mobile */
 @media (max-width: 768px) {
     body {
