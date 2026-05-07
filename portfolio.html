@@ -203,6 +203,13 @@
 </head>
 <body>
 
+    <!-- GLOBAL -->
+<div class="preloader" id="preloader"><div class="loader"></div><div class="loader-text">BiG FlooW</div></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+<button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i> Message envoyé !</div>
+    
 <div class="bg-stickers" aria-hidden="true">
     <i class="fas fa-pen-nib sticker s1"></i><i class="fas fa-bezier-curve sticker s2"></i>
     <i class="fas fa-palette sticker s3"></i><i class="fas fa-vector-square sticker s4"></i>
@@ -212,9 +219,12 @@
     <i class="fas fa-cube sticker s11"></i><i class="fas fa-paint-brush sticker s12"></i>
     <i class="fas fa-globe sticker s13"></i><i class="fas fa-film sticker s14"></i>
 </div>
+    
+<!-- NAVBAR -->
 <nav class="navbar">
     <div class="brand">BiG <span class="floo">Floo</span><span class="w">W</span></div>
-    <ul class="nav-links">
+    <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+    <ul class="nav-links" id="navLinks">
         <li><button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button></li>
         <li><a href="index.html">Accueil</a></li>
         <li><a href="portfolio.html">Graphisme</a></li>
@@ -225,7 +235,8 @@
     </ul>
 </nav>
 
-<header class="port-hero">
+<!-- HERO -->
+<header class="port-hero reveal">
     <div class="port-hero-bg" style="background-image:url('home1.webp');"></div>
     <div class="port-hero-overlay"></div>
     <div class="port-hero-content">
@@ -245,7 +256,7 @@
     </div>
 </div>
 
-<section class="portfolio-section">
+<section class="portfolio-section reveal">
     <div class="portfolio-grid-new">
         <div class="work-item">
             <div class="work-image">
@@ -618,7 +629,7 @@
     </div>
 </section>
 
-<div class="port-cta-band">
+<div class="port-cta-band reveal">
     <h3>Vous aimez ce que vous voyez ? <span>Travaillons ensemble.</span></h3>
     <p>Besoin d'un logo, d'une affiche ou d'un support graphique professionnel ? Contactez BiG FlooW dès maintenant.</p>
     <a href="https://wa.me/22890498680?text=Besoin d'un logo, d'une affiche ou d'un support graphique professionnel ? Contactez BiG FlooW dès maintenant." class="port-cta-btn" target="_blank">
@@ -721,60 +732,150 @@
     <div id="lightbox-caption"></div>
 </div>
 
-<script>
-const themeToggle = document.getElementById('theme-toggle');
-function updateIcon(d){if(!themeToggle)return;const i=themeToggle.querySelector('i');if(d)i.classList.replace('fa-moon','fa-sun');else i.classList.replace('fa-sun','fa-moon');}
-const st=localStorage.getItem('bigfloow-theme');
-if(st==='dark'){document.body.classList.add('dark-theme');updateIcon(true);}
-if(themeToggle){themeToggle.addEventListener('click',()=>{const d=document.body.classList.toggle('dark-theme');localStorage.setItem('bigfloow-theme',d?'dark':'light');updateIcon(d);});}
-
-document.addEventListener('DOMContentLoaded',function(){
-    const b=document.getElementById('cookie-banner'),btn=document.getElementById('accept-cookie');
-    if(b&&!localStorage.getItem('bigfloow_cookies'))b.style.display='block';
-    if(btn)btn.addEventListener('click',function(){localStorage.setItem('bigfloow_cookies','true');b.style.display='none';});
-});
-
-function sendFooterDevis(e){
-    e.preventDefault();
-    const n=document.getElementById('devis-name').value.trim(),s=document.getElementById('devis-service').value,bgt=document.getElementById('devis-budget').value.trim();
-    if(!n||!s)return;
-    const msg='Bonjour BiG FlooW\u{1F44B}\n\nJe souhaite un devis pour :\n- Nom : '+n+'\n- Service : '+s+(bgt?'\n- Budget : '+bgt+' FCFA':'')+' \n\nMerci !';
-    window.open('https://wa.me/22890498680?text='+encodeURIComponent(msg),'_blank');
-}
-function subscribeNewsletter(){
-    const e=document.getElementById('newsletter-email').value.trim();
-    if(!e||!e.includes('@')){alert('Email invalide');return;}
-    window.open('https://wa.me/22890498680?text='+encodeURIComponent('Newsletter : '+e),'_blank');
-    document.getElementById('newsletter-email').value='';
-}
-function toggleChatbot(){if(window.chatbase)window.chatbase('open');}
-
-function openLightbox(src,cap){
-    document.getElementById('lightbox-img').src=src;
-    document.getElementById('lightbox-caption').textContent=cap||'Création BiG FlooW';
-    document.getElementById('lightbox').classList.add('active');
-    document.body.style.overflow='hidden';
-}
-function closeLightbox(){
-    document.getElementById('lightbox').classList.remove('active');
-    document.body.style.overflow='';
-}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
-document.addEventListener('DOMContentLoaded',()=>{
-    document.querySelectorAll('.work-image img').forEach(img=>{
-        img.style.cursor='zoom-in';
-        img.addEventListener('click',()=>{
-            const cap=img.closest('.work-item')?.querySelector('h4')?.textContent||img.alt;
-            openLightbox(img.src,cap);
+  <script>
+// =========================================
+// FONCTIONS GLOBALES (preloader, scroll, back to top, mobile menu, reveal, theme, toast, newsletter, devis, cookie, lightbox)
+// =========================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Preloader
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        window.addEventListener('load', () => setTimeout(() => preloader.classList.add('hide'), 800));
+    }
+    // Scroll progress
+    const scrollProgress = document.getElementById('scrollProgress');
+    if (scrollProgress) {
+        window.addEventListener('scroll', () => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+    }
+    // Back to top
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        window.addEventListener('scroll', () => backToTop.classList.toggle('show', window.scrollY > 500));
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    const navOverlay = document.getElementById('navOverlay');
+    function toggleMenu() {
+        if (navLinks && navOverlay) {
+            navLinks.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        }
+    }
+    if (hamburger) hamburger.addEventListener('click', toggleMenu);
+    if (navOverlay) navOverlay.addEventListener('click', toggleMenu);
+    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => { if (navLinks && navLinks.classList.contains('active')) toggleMenu(); }));
+    // Reveal animations
+    const revealElements = document.querySelectorAll('.reveal');
+    if (revealElements.length) {
+        const observer = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('active')), { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+    }
+    // Navbar glassmorphism
+    const navbar = document.querySelector('.navbar');
+    if (navbar) window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+    // Toast
+    function showToast(message, isSuccess = true) {
+        const toast = document.getElementById('toastNotification');
+        if (toast) {
+            toast.innerHTML = `<i class="fas ${isSuccess ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> ${message}`;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+    }
+    window.showToast = showToast;
+    // Newsletter
+    window.subscribeNewsletter = function() {
+        const email = document.getElementById('newsletter-email');
+        if (email && email.value.trim() && email.value.includes('@')) {
+            window.open(`https://wa.me/22890498680?text=${encodeURIComponent('Newsletter : ' + email.value.trim())}`, '_blank');
+            email.value = '';
+            showToast('Demande d\'inscription envoyée !');
+        } else showToast('Email invalide', false);
+    };
+    // Devis
+    window.sendFooterDevis = function(e) {
+        e.preventDefault();
+        const name = document.getElementById('devis-name')?.value.trim();
+        const service = document.getElementById('devis-service')?.value;
+        const budget = document.getElementById('devis-budget')?.value.trim();
+        if (!name || !service) { showToast('Veuillez remplir nom et service', false); return; }
+        let msg = `Bonjour BiG FlooW 👋\n\nDevis :\nNom : ${name}\nService : ${service}`;
+        if (budget) msg += `\nBudget : ${budget} FCFA`;
+        msg += '\n\nMerci !';
+        window.open(`https://wa.me/22890498680?text=${encodeURIComponent(msg)}`, '_blank');
+        showToast('Demande de devis envoyée !');
+        document.getElementById('devis-name').value = '';
+        document.getElementById('devis-service').value = '';
+        if (document.getElementById('devis-budget')) document.getElementById('devis-budget').value = '';
+    };
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    function updateIcon(isDark) {
+        if (!themeToggle) return;
+        const icon = themeToggle.querySelector('i');
+        if (isDark) icon?.classList.replace('fa-moon', 'fa-sun');
+        else icon?.classList.replace('fa-sun', 'fa-moon');
+    }
+    function applyTheme(isDark) {
+        body.classList.toggle('dark-theme', isDark);
+        updateIcon(isDark);
+        localStorage.setItem('bigfloow-theme', isDark ? 'dark' : 'light');
+    }
+    const saved = localStorage.getItem('bigfloow-theme');
+    if (saved === 'dark') applyTheme(true);
+    else if (saved === 'light') applyTheme(false);
+    else applyTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    if (themeToggle) themeToggle.addEventListener('click', () => applyTheme(!body.classList.contains('dark-theme')));
+    // Cookie banner
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('accept-cookie');
+    if (cookieBanner && !localStorage.getItem('bigfloow_cookies')) cookieBanner.style.display = 'block';
+    if (acceptBtn) acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('bigfloow_cookies', 'true');
+        if (cookieBanner) cookieBanner.style.display = 'none';
+        showToast('Cookies acceptés !');
+    });
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    window.openLightbox = function(src, cap) {
+        if (lightboxImg && lightboxCaption) {
+            lightboxImg.src = src;
+            lightboxCaption.textContent = cap || 'Création BiG FlooW';
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    };
+    window.closeLightbox = function() {
+        if (lightbox) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    };
+    if (lightbox) lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+    // Attacher lightbox aux images work-item
+    document.querySelectorAll('.work-image img').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => {
+            const cap = img.closest('.work-item')?.querySelector('h4')?.textContent || img.alt;
+            openLightbox(img.src, cap);
         });
     });
-    document.querySelectorAll('.story-logo-img,.mini-logo,.founder-photo').forEach(img=>{
-        img.style.cursor='zoom-in';
-        img.addEventListener('click',()=>openLightbox(img.src,img.alt||'BiG FlooW'));
-    });
 });
+// Chatbase (optionnel)
+function toggleChatbot() { if (window.chatbase) window.chatbase('open'); }
+window.chatbaseConfig = { chatbotId: "lamcS_rk7GxldSZ8_1qHN", defaultOpen: false, hideButton: true };
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...a)=>{if(!window.chatbase.q)window.chatbase.q=[];window.chatbase.q.push(a)};window.chatbase=new Proxy(window.chatbase,{get(t,p){if(p==="q")return t.q;return(...a)=>t(p,...a)}})}const l=function(){const s=document.createElement("script");s.src="https://www.chatbase.co/embed.min.js";s.id="lamcS_rk7GxldSZ8_1qHN";s.domain="www.chatbase.co";document.body.appendChild(s)};if(document.readyState==="complete")l();else window.addEventListener("load",l)})();
 </script>
-<script>(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...a)=>{if(!window.chatbase.q)window.chatbase.q=[];window.chatbase.q.push(a)};window.chatbase=new Proxy(window.chatbase,{get(t,p){if(p==="q")return t.q;return(...a)=>t(p,...a)}})}const l=function(){const s=document.createElement("script");s.src="https://www.chatbase.co/embed.min.js";s.id="lamcS_rk7GxldSZ8_1qHN";s.domain="www.chatbase.co";document.body.appendChild(s)};if(document.readyState==="complete")l();else window.addEventListener("load",l)})();</script>
 
 </body>
 </html>
