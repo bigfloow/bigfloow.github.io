@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BiG FlooW - Contenus créatifs, vidéos lyrics, TikTok, YouTube.">
-    <title>BiG FlooW | Contenus Créatifs</title>
+    <meta name="description" content="BiG FlooW - Portfolio Graphisme à Lomé. Logos, affiches, cartes de visite.">
+    <title>BiG FlooW | Graphisme</title>
     <link rel="icon" type="image/png" href="fac2_logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
     <style>
     /* ── Entête page portfolio ── */
     .port-hero {
@@ -198,13 +199,6 @@
     @media (min-width: 769px) and (max-width: 1024px) {
         .portfolio-grid-new { grid-template-columns: repeat(2, 1fr); }
     }
-         /* Styles spécifiques contenus (garder l'existant, ajouter reveal si nécessaire) */
-        .port-hero { height: 52vh; min-height: 280px; position: relative; display: flex; align-items: flex-end; justify-content: flex-start; overflow: hidden; padding-top: 70px; }
-        /* ... tous les styles de grille vidéo déjà présents ... */
-        .portfolio-video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; padding: 20px 0; }
-        .video-portfolio-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: var(--transition); border: 1px solid rgba(0,0,0,0.03); }
-        /* etc. (conserver l'existant) */
-
     </style>
 </head>
 <body>
@@ -218,19 +212,9 @@
     <i class="fas fa-cube sticker s11"></i><i class="fas fa-paint-brush sticker s12"></i>
     <i class="fas fa-globe sticker s13"></i><i class="fas fa-film sticker s14"></i>
 </div>
-    <!-- ÉLÉMENTS GLOBAUX (preloader, scroll, back to top, overlay, toast) -->
-<div class="preloader" id="preloader"><div class="loader"></div><div class="loader-text">BiG FlooW</div></div>
-<div class="scroll-progress" id="scrollProgress"></div>
-<button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
-<div class="nav-overlay" id="navOverlay"></div>
-<div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i> Message envoyé !</div>
-    
-
-<!-- NAVBAR AVEC HAMBURGER -->
 <nav class="navbar">
     <div class="brand">BiG <span class="floo">Floo</span><span class="w">W</span></div>
-    <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
-    <ul class="nav-links" id="navLinks">
+    <ul class="nav-links">
         <li><button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button></li>
         <li><a href="index.html">Accueil</a></li>
         <li><a href="portfolio.html">Graphisme</a></li>
@@ -241,13 +225,12 @@
     </ul>
 </nav>
 
-<!-- HERO -->
-<header class="port-hero reveal">
+<header class="port-hero">
     <div class="port-hero-bg" style="background-image:url('home1.webp');"></div>
     <div class="port-hero-overlay"></div>
     <div class="port-hero-content">
         <div class="port-hero-label"><i class="fas fa-pen-nib"></i> Portfolio Design</div>
-        <h1>Nos contenus<span>Créatifs</span></h1>
+        <h1> Nos contenus<span>Créatifs</span></h1>
         <p class="port-hero-desc">Explorez nos créations lyrics et productions visuelles dynamiques.</p>
     </div>
 </header>
@@ -256,14 +239,14 @@
 <div class="port-toolbar">
     <a href="index.html" class="back-pill"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
     <div class="port-stats-bar">
-        <div class="port-stat"><i class="fas fa-fingerprint"></i> Identité unique</div>
-        <div class="port-stat"><i class="fas fa-star" style="color:var(--accent-orange);"></i> Positionnement premium</div>
+        <div class="port-stat"><i class="fas fa-images"></i> créations</div>
+        <div class="port-stat"><i class="fas fa-star" style="color:var(--accent-orange);"></i> Qualité premium</div>
         <div class="port-stat"><i class="fas fa-map-marker-alt"></i> Lomé, Togo</div>
     </div>
 </div>
 
 <main>
-    <section class="section-padding reveal">
+    <section class="section-padding">
         <div class="container">
             <div class="portfolio-video-grid">
                 
@@ -521,150 +504,72 @@ stats.forEach(s => observer.observe(s));
     </div>
 </div>
 
-    <script>
-// =========================================
-// FONCTIONS GLOBALES (preloader, scroll, back to top, mobile menu, reveal, theme, toast, newsletter, devis, cookie, lightbox)
-// =========================================
+<script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Preloader
-    const preloader = document.getElementById('preloader');
-    if (preloader) {
-        window.addEventListener('load', () => setTimeout(() => preloader.classList.add('hide'), 800));
+    const banner = document.getElementById('cookie-banner');
+    const btn = document.getElementById('accept-cookie');
+    if (!localStorage.getItem('bigfloow_cookies')) { banner.style.display = 'block'; }
+    btn.addEventListener('click', function() { localStorage.setItem('bigfloow_cookies', 'true'); banner.style.display = 'none'; });
+});
+function sendFooterDevis(e) {
+    e.preventDefault();
+    const name = document.getElementById('devis-name').value.trim();
+    const service = document.getElementById('devis-service').value;
+    const budget = document.getElementById('devis-budget').value.trim();
+    if (!name || !service) return;
+    const msg = `Bonjour BiG FlooW 👋\n\nJe souhaite un devis pour :\n- Nom : ${name}\n- Service : ${service}${budget ? '\n- Budget estimé : ' + budget + ' FCFA' : ''}\n\nMerci !`;
+    window.open(`https://wa.me/22890498680?text=${encodeURIComponent(msg)}`, '_blank');
+}
+function subscribeNewsletter() {
+    const email = document.getElementById('newsletter-email').value.trim();
+    if (!email || !email.includes('@')) { alert('Veuillez entrer une adresse email valide.'); return; }
+    const msg = `Bonjour BiG FlooW,\nJe souhaite m'inscrire à la newsletter avec l'email : ${email}`;
+    window.open(`https://wa.me/22890498680?text=${encodeURIComponent(msg)}`, '_blank');
+    document.getElementById('newsletter-email').value = '';
+}
+</script>
+
+<script>
+function toggleChatbot() {
+    if (window.chatbase) {
+        window.chatbase("open");
     }
-    // Scroll progress
-    const scrollProgress = document.getElementById('scrollProgress');
-    if (scrollProgress) {
-        window.addEventListener('scroll', () => {
-            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            scrollProgress.style.width = scrollPercent + '%';
-        });
-    }
-    // Back to top
-    const backToTop = document.getElementById('backToTop');
-    if (backToTop) {
-        window.addEventListener('scroll', () => backToTop.classList.toggle('show', window.scrollY > 500));
-        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    }
-    // Mobile menu
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    const navOverlay = document.getElementById('navOverlay');
-    function toggleMenu() {
-        if (navLinks && navOverlay) {
-            navLinks.classList.toggle('active');
-            navOverlay.classList.toggle('active');
-            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-        }
-    }
-    if (hamburger) hamburger.addEventListener('click', toggleMenu);
-    if (navOverlay) navOverlay.addEventListener('click', toggleMenu);
-    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => { if (navLinks && navLinks.classList.contains('active')) toggleMenu(); }));
-    // Reveal animations
-    const revealElements = document.querySelectorAll('.reveal');
-    if (revealElements.length) {
-        const observer = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('active')), { threshold: 0.1 });
-        revealElements.forEach(el => observer.observe(el));
-    }
-    // Navbar glassmorphism
-    const navbar = document.querySelector('.navbar');
-    if (navbar) window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
-    // Toast
-    function showToast(message, isSuccess = true) {
-        const toast = document.getElementById('toastNotification');
-        if (toast) {
-            toast.innerHTML = `<i class="fas ${isSuccess ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> ${message}`;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
-        }
-    }
-    window.showToast = showToast;
-    // Newsletter
-    window.subscribeNewsletter = function() {
-        const email = document.getElementById('newsletter-email');
-        if (email && email.value.trim() && email.value.includes('@')) {
-            window.open(`https://wa.me/22890498680?text=${encodeURIComponent('Newsletter : ' + email.value.trim())}`, '_blank');
-            email.value = '';
-            showToast('Demande d\'inscription envoyée !');
-        } else showToast('Email invalide', false);
-    };
-    // Devis
-    window.sendFooterDevis = function(e) {
-        e.preventDefault();
-        const name = document.getElementById('devis-name')?.value.trim();
-        const service = document.getElementById('devis-service')?.value;
-        const budget = document.getElementById('devis-budget')?.value.trim();
-        if (!name || !service) { showToast('Veuillez remplir nom et service', false); return; }
-        let msg = `Bonjour BiG FlooW 👋\n\nDevis :\nNom : ${name}\nService : ${service}`;
-        if (budget) msg += `\nBudget : ${budget} FCFA`;
-        msg += '\n\nMerci !';
-        window.open(`https://wa.me/22890498680?text=${encodeURIComponent(msg)}`, '_blank');
-        showToast('Demande de devis envoyée !');
-        document.getElementById('devis-name').value = '';
-        document.getElementById('devis-service').value = '';
-        if (document.getElementById('devis-budget')) document.getElementById('devis-budget').value = '';
-    };
-    // Theme toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    function updateIcon(isDark) {
-        if (!themeToggle) return;
-        const icon = themeToggle.querySelector('i');
-        if (isDark) icon?.classList.replace('fa-moon', 'fa-sun');
-        else icon?.classList.replace('fa-sun', 'fa-moon');
-    }
-    function applyTheme(isDark) {
-        body.classList.toggle('dark-theme', isDark);
-        updateIcon(isDark);
-        localStorage.setItem('bigfloow-theme', isDark ? 'dark' : 'light');
-    }
-    const saved = localStorage.getItem('bigfloow-theme');
-    if (saved === 'dark') applyTheme(true);
-    else if (saved === 'light') applyTheme(false);
-    else applyTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
-    if (themeToggle) themeToggle.addEventListener('click', () => applyTheme(!body.classList.contains('dark-theme')));
-    // Cookie banner
-    const cookieBanner = document.getElementById('cookie-banner');
-    const acceptBtn = document.getElementById('accept-cookie');
-    if (cookieBanner && !localStorage.getItem('bigfloow_cookies')) cookieBanner.style.display = 'block';
-    if (acceptBtn) acceptBtn.addEventListener('click', () => {
-        localStorage.setItem('bigfloow_cookies', 'true');
-        if (cookieBanner) cookieBanner.style.display = 'none';
-        showToast('Cookies acceptés !');
-    });
-    // Lightbox
+}
+</script>
+
+<script>(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="lamcS_rk7GxldSZ8_1qHN";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.getElementById('lightbox-caption');
-    window.openLightbox = function(src, cap) {
-        if (lightboxImg && lightboxCaption) {
-            lightboxImg.src = src;
-            lightboxCaption.textContent = cap || 'Création BiG FlooW';
-            lightbox.classList.add('active');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const imagesToZoom = document.querySelectorAll('.story-logo-img, .mini-logo');
+    imagesToZoom.forEach(image => {
+        image.style.cursor = "zoom-in";
+        image.addEventListener('click', () => {
+            lightbox.classList.add('active'); lightboxImg.src = image.src;
+            lightboxCaption.innerText = image.alt || "Création BiG FlooW";
             document.body.style.overflow = 'hidden';
-        }
-    };
-    window.closeLightbox = function() {
-        if (lightbox) {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    };
-    if (lightbox) lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-    // Attacher lightbox aux images work-item
-    document.querySelectorAll('.work-image img').forEach(img => {
-        img.style.cursor = 'zoom-in';
-        img.addEventListener('click', () => {
-            const cap = img.closest('.work-item')?.querySelector('h4')?.textContent || img.alt;
-            openLightbox(img.src, cap);
         });
     });
+    const closeLightbox = () => { lightbox.classList.remove('active'); document.body.style.overflow = 'auto'; };
+    if(closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
 });
-// Chatbase (optionnel)
-function toggleChatbot() { if (window.chatbase) window.chatbase('open'); }
-window.chatbaseConfig = { chatbotId: "lamcS_rk7GxldSZ8_1qHN", defaultOpen: false, hideButton: true };
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...a)=>{if(!window.chatbase.q)window.chatbase.q=[];window.chatbase.q.push(a)};window.chatbase=new Proxy(window.chatbase,{get(t,p){if(p==="q")return t.q;return(...a)=>t(p,...a)}})}const l=function(){const s=document.createElement("script");s.src="https://www.chatbase.co/embed.min.js";s.id="lamcS_rk7GxldSZ8_1qHN";s.domain="www.chatbase.co";document.body.appendChild(s)};if(document.readyState==="complete")l();else window.addEventListener("load",l)})();
 </script>
-    
+
+<div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="Aperçu" class="lightbox-content">
+    <div id="lightbox-caption"></div>
+</div>
+
+<style>
+.lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 50px; font-weight: bold; cursor: pointer; z-index: 10001; }
+</style>
+
 </body>
 </html>
