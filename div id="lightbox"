@@ -178,13 +178,14 @@
     </div>
 </section>
 
-<div class="port-cta-band" id="appel-action">
+<div class="port-cta-band reveal" id="appel-action">
     <h3>Prêt à construire une marque forte ? <span>Travaillons ensemble.</span></h3>
     <a href="https://wa.me/22890498680" class="port-cta-btn" target="_blank">
         <i class="fab fa-whatsapp"></i> Obtenir un diagnostic gratuit
     </a>
 </div>
 
+<!-- LIGHTBOX (une seule, avant le footer) -->
 <div id="lightbox" class="lightbox" onclick="if(event.target===this)closeLightbox()">
     <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
     <div class="lightbox-content-wrapper">
@@ -258,63 +259,7 @@
     </div>
 </footer>
 
-<div id="lightbox" class="lightbox" onclick="if(event.target===this)closeLightbox()">
-    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-    <div class="lightbox-content-wrapper">
-        <img id="lightbox-img" src="" alt="Aperçu BiG FlooW" class="lightbox-content">
-    </div>
-    <div id="lightbox-caption"></div>
-</div>
-
 <script>
-// ==========================================
-// THÈME SOMBRE (GARDÉ ET SIMPLIFIÉ)
-// ==========================================
-const themeToggle = document.getElementById('theme-toggle');
-function updateIcon(d){if(!themeToggle)return;const i=themeToggle.querySelector('i');if(d)i.classList.replace('fa-moon','fa-sun');else i.classList.replace('fa-sun','fa-moon');}
-const st=localStorage.getItem('bigfloow-theme');
-if(st==='dark'){document.body.classList.add('dark-theme');updateIcon(true);}
-if(themeToggle){themeToggle.addEventListener('click',()=>{const d=document.body.classList.toggle('dark-theme');localStorage.setItem('bigfloow-theme',d?'dark':'light');updateIcon(d);});}
-
-// ==========================================
-// UTILS & EVENTS
-// ==========================================
-function sendFooterDevis(e){
-    e.preventDefault();
-    const n=document.getElementById('devis-name').value.trim(),s=document.getElementById('devis-service').value,bgt=document.getElementById('devis-budget').value.trim();
-    if(!n||!s)return;
-    const msg='Bonjour BiG FlooW\u{1F44B}\n\nJe souhaite un devis pour :\n- Nom : '+n+'\n- Service : '+s+(bgt?'\n- Budget : '+bgt+' FCFA':'')+' \n\nMerci !';
-    window.open('https://wa.me/22890498680?text='+encodeURIComponent(msg),'_blank');
-}
-function subscribeNewsletter(){
-    const e=document.getElementById('newsletter-email').value.trim();
-    if(!e||!e.includes('@')){alert('Email invalide');return;}
-    window.open('https://wa.me/22890498680?text='+encodeURIComponent('Newsletter : '+e),'_blank');
-    document.getElementById('newsletter-email').value='';
-}
-
-// ==========================================
-// LIGHTBOX (GARDÉ ET OPTIMISÉ POUR LE TEXTE)
-// ==========================================
-const lb = document.getElementById('lightbox');
-const lbImg = document.getElementById('lightbox-img');
-const lbCap = document.getElementById('lightbox-caption');
-
-function openLightbox(src, cap){
-    lbImg.src = src;
-    lbCap.textContent = cap || 'Création BiG FlooW';
-    lb.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-function closeLightbox(){
-    lb.classList.remove('active');
-    document.body.style.overflow = '';
-}
-document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
-
-</script>
-    
-    <script>
 // =========================================
 // FONCTIONS GLOBALES (preloader, scroll, back to top, mobile menu, reveal, theme, toast, newsletter, devis, cookie, lightbox)
 // =========================================
@@ -424,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (cookieBanner) cookieBanner.style.display = 'none';
         showToast('Cookies acceptés !');
     });
-    // Lightbox
+    // Lightbox (celle existante)
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.getElementById('lightbox-caption');
@@ -432,15 +377,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (lightboxImg && lightboxCaption) {
             lightboxImg.src = src;
             lightboxCaption.textContent = cap || 'Création BiG FlooW';
-            lightbox.classList.add('active');
+            lightbox?.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
     };
     window.closeLightbox = function() {
-        if (lightbox) {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+        lightbox?.classList.remove('active');
+        document.body.style.overflow = '';
     };
     if (lightbox) lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
@@ -453,11 +396,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-// Chatbase (optionnel)
+// Chatbase
 function toggleChatbot() { if (window.chatbase) window.chatbase('open'); }
 window.chatbaseConfig = { chatbotId: "lamcS_rk7GxldSZ8_1qHN", defaultOpen: false, hideButton: true };
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...a)=>{if(!window.chatbase.q)window.chatbase.q=[];window.chatbase.q.push(a)};window.chatbase=new Proxy(window.chatbase,{get(t,p){if(p==="q")return t.q;return(...a)=>t(p,...a)}})}const l=function(){const s=document.createElement("script");s.src="https://www.chatbase.co/embed.min.js";s.id="lamcS_rk7GxldSZ8_1qHN";s.domain="www.chatbase.co";document.body.appendChild(s)};if(document.readyState==="complete")l();else window.addEventListener("load",l)})();
 </script>
+
   
 </body>
 </html>
