@@ -276,3 +276,19 @@ document.addEventListener('DOMContentLoaded', function() {
             cursorDot.style.top = e.clientY + 'px';
         });
     }
+
+    // ---------- SKELETON LOADER POUR IMAGES ----------
+const images = document.querySelectorAll('img:not(.skeleton-processed)');
+images.forEach(function(img) {
+    img.classList.add('skeleton-processed');
+    if (img.complete) {
+        img.style.opacity = '1';
+    } else {
+        img.style.opacity = '0';
+        img.classList.add('skeleton');
+        img.addEventListener('load', function() {
+            img.style.opacity = '1';
+            img.classList.remove('skeleton');
+        });
+    }
+});
