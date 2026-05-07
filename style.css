@@ -1262,3 +1262,29 @@ html {
         scroll-padding-top: 70px;
     }
 }
+
+.work-image img, .mockup-screen img, .video-cover, .story-logo-img, .mini-logo {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover; /* ou contain selon besoin */
+}
+
+/* Force toutes les images à être responsive */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Cas particuliers des cartes portfolio */
+.work-image img,
+.video-cover,
+.mockup-screen img,
+.story-logo-img,
+.mini-logo,
+.founder-photo-img {
+    width: 100%;
+    height: 200px;  /* ou auto, mais fixe pour harmoniser les grilles */
+    object-fit: cover;
+}
