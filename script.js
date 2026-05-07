@@ -1,7 +1,42 @@
 // =========================================
-// AMÉLIORATIONS BiG FlooW - JavaScript (version stable)
+// LIGHTBOX GLOBALE (disponible partout)
 // =========================================
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxCaption = document.getElementById('lightbox-caption');
 
+window.openLightbox = function(src, cap) {
+    if (lightboxImg && lightboxCaption) {
+        lightboxImg.src = src;
+        lightboxCaption.textContent = cap || 'Création BiG FlooW';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+};
+
+window.closeLightbox = function() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+};
+
+// Attacher les événements après le chargement du DOM
+document.addEventListener('DOMContentLoaded', function() {
+    if (lightbox) {
+        // Fermeture en cliquant sur le fond
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+                closeLightbox();
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    }
+});
+
+// =========================================
+// AUTRES FONCTIONNALITÉS GLOBALES
+// =========================================
 document.addEventListener('DOMContentLoaded', function() {
 
     // ---------- PRELOADER ----------
@@ -45,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ---------- ANIMATIONS REVEAL ----------
+    // ---------- REVEAL ANIMATIONS ----------
     const revealElements = document.querySelectorAll('.reveal');
     if (revealElements.length) {
         const observer = new IntersectionObserver(entries => {
@@ -54,10 +89,12 @@ document.addEventListener('DOMContentLoaded', function() {
         revealElements.forEach(el => observer.observe(el));
     }
 
-    // ---------- GLASSMORPHISM NAVBAR ----------
+    // ---------- NAVBAR GLASSMORPHISM ----------
     const navbar = document.querySelector('.navbar');
     if (navbar) {
-        window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
     }
 
     // ---------- RIPPLE EFFECT ----------
@@ -82,7 +119,9 @@ document.addEventListener('DOMContentLoaded', function() {
             window.open(`https://wa.me/22890498680?text=${encodeURIComponent('Newsletter : ' + email.value.trim())}`, '_blank');
             email.value = '';
             showToast('Demande d\'inscription envoyée !');
-        } else showToast('Email invalide', false);
+        } else {
+            showToast('Email invalide', false);
+        }
     };
 
     // ---------- DEVIS ----------
@@ -105,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (document.getElementById('devis-budget')) document.getElementById('devis-budget').value = '';
     };
 
-    // ---------- MODE SOMBRE AMÉLIORÉ ----------
+    // ---------- MODE SOMBRE ----------
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
     function updateIcon(isDark) {
@@ -123,7 +162,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (savedTheme === 'dark') applyTheme(true);
     else if (savedTheme === 'light') applyTheme(false);
     else applyTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
-
     if (themeToggle) {
         themeToggle.addEventListener('click', () => applyTheme(!body.classList.contains('dark-theme')));
     }
@@ -180,6 +218,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ---------- PAS DE SKELETON LOADER ----------
-    // Les images s'affichent normalement sans délai ni opacité forcée.
+    // ---------- (Suppression du skeleton loader – plus d’opacité forcée) ----------
 });
