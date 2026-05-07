@@ -203,13 +203,6 @@
 </head>
 <body>
 
-<!-- GLOBAL -->
-    <div class="preloader" id="preloader"><div class="loader"></div><div class="loader-text">BiG FlooW</div></div>
-    <div class="scroll-progress" id="scrollProgress"></div>
-    <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
-    <div class="nav-overlay" id="navOverlay"></div>
-    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i> Message envoyé !</div>
-    
 <div class="bg-stickers" aria-hidden="true">
     <i class="fas fa-pen-nib sticker s1"></i><i class="fas fa-bezier-curve sticker s2"></i>
     <i class="fas fa-palette sticker s3"></i><i class="fas fa-vector-square sticker s4"></i>
@@ -219,24 +212,20 @@
     <i class="fas fa-cube sticker s11"></i><i class="fas fa-paint-brush sticker s12"></i>
     <i class="fas fa-globe sticker s13"></i><i class="fas fa-film sticker s14"></i>
 </div>
-    
- <!-- NAVBAR (avec hamburger) -->
-    <nav class="navbar">
-        <div class="brand">BiG <span class="floo">Floo</span><span class="w">W</span></div>
-        <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
-        <ul class="nav-links" id="navLinks">
-            <li><button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button></li>
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="portfolio.html">Graphisme</a></li>
-            <li><a href="portfolio-3d.html">3D</a></li>
-            <li><a href="portfolio-branding.html">Branding</a></li>
-            <li><a href="portfolio-web.html">Web</a></li>
-            <li><a href="#contact" class="btn-contact">Contact</a></li>
-        </ul>
-    </nav>
+<nav class="navbar">
+    <div class="brand">BiG <span class="floo">Floo</span><span class="w">W</span></div>
+    <ul class="nav-links">
+        <li><button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button></li>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="portfolio.html">Graphisme</a></li>
+        <li><a href="portfolio-3d.html">3D</a></li>
+        <li><a href="portfolio-branding.html">Branding</a></li>
+        <li><a href="portfolio-web.html">Web</a></li>
+        <li><a href="#contact" class="btn-contact">Contact</a></li>
+    </ul>
+</nav>
 
-<!-- HERO -->
-<header class="port-hero reveal">
+<header class="port-hero">
     <div class="port-hero-bg" style="background-image:url('home1.webp');"></div>
     <div class="port-hero-overlay"></div>
     <div class="port-hero-content">
@@ -629,7 +618,7 @@
     </div>
 </section>
 
-<div class="port-cta-band reveal">
+<div class="port-cta-band">
     <h3>Vous aimez ce que vous voyez ? <span>Travaillons ensemble.</span></h3>
     <p>Besoin d'un logo, d'une affiche ou d'un support graphique professionnel ? Contactez BiG FlooW dès maintenant.</p>
     <a href="https://wa.me/22890498680?text=Besoin d'un logo, d'une affiche ou d'un support graphique professionnel ? Contactez BiG FlooW dès maintenant." class="port-cta-btn" target="_blank">
@@ -724,30 +713,68 @@
     </div>
 </div>
 
-<!-- LIGHTBOX (une seule, bien structurée, avec croix) -->
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <div class="lightbox-content-wrapper">
-            <img id="lightbox-img" src="" alt="Aperçu" class="lightbox-content">
-        </div>
-        <div id="lightbox-caption"></div>
+<div id="lightbox" class="lightbox" onclick="if(event.target===this)closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <div class="lightbox-content-wrapper">
+        <img id="lightbox-img" src="" alt="Aperçu" class="lightbox-content">
     </div>
+    <div id="lightbox-caption"></div>
+</div>
 
-  <!-- CHATBOT (scripts nécessaires) -->
-    <script>
-    function toggleChatbot() {
-        if (window.chatbase && typeof window.chatbase === 'function') {
-            window.chatbase('open');
-        } else {
-            setTimeout(toggleChatbot, 500);
-        }
-    }
-    window.chatbaseConfig = { chatbotId: "lamcS_rk7GxldSZ8_1qHN", defaultOpen: false, hideButton: true };
-    (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...a)=>{if(!window.chatbase.q)window.chatbase.q=[];window.chatbase.q.push(a)};window.chatbase=new Proxy(window.chatbase,{get(t,p){if(p==="q")return t.q;return(...a)=>t(p,...a)}})}const l=function(){const s=document.createElement("script");s.src="https://www.chatbase.co/embed.min.js";s.id="lamcS_rk7GxldSZ8_1qHN";s.domain="www.chatbase.co";document.body.appendChild(s)};if(document.readyState==="complete")l();else window.addEventListener("load",l)})();
-    </script>
+<script>
+const themeToggle = document.getElementById('theme-toggle');
+function updateIcon(d){if(!themeToggle)return;const i=themeToggle.querySelector('i');if(d)i.classList.replace('fa-moon','fa-sun');else i.classList.replace('fa-sun','fa-moon');}
+const st=localStorage.getItem('bigfloow-theme');
+if(st==='dark'){document.body.classList.add('dark-theme');updateIcon(true);}
+if(themeToggle){themeToggle.addEventListener('click',()=>{const d=document.body.classList.toggle('dark-theme');localStorage.setItem('bigfloow-theme',d?'dark':'light');updateIcon(d);});}
 
-    <!-- SCRIPT EXTERNE UNIQUE -->
-    <script src="script.js"></script>
+document.addEventListener('DOMContentLoaded',function(){
+    const b=document.getElementById('cookie-banner'),btn=document.getElementById('accept-cookie');
+    if(b&&!localStorage.getItem('bigfloow_cookies'))b.style.display='block';
+    if(btn)btn.addEventListener('click',function(){localStorage.setItem('bigfloow_cookies','true');b.style.display='none';});
+});
+
+function sendFooterDevis(e){
+    e.preventDefault();
+    const n=document.getElementById('devis-name').value.trim(),s=document.getElementById('devis-service').value,bgt=document.getElementById('devis-budget').value.trim();
+    if(!n||!s)return;
+    const msg='Bonjour BiG FlooW\u{1F44B}\n\nJe souhaite un devis pour :\n- Nom : '+n+'\n- Service : '+s+(bgt?'\n- Budget : '+bgt+' FCFA':'')+' \n\nMerci !';
+    window.open('https://wa.me/22890498680?text='+encodeURIComponent(msg),'_blank');
+}
+function subscribeNewsletter(){
+    const e=document.getElementById('newsletter-email').value.trim();
+    if(!e||!e.includes('@')){alert('Email invalide');return;}
+    window.open('https://wa.me/22890498680?text='+encodeURIComponent('Newsletter : '+e),'_blank');
+    document.getElementById('newsletter-email').value='';
+}
+function toggleChatbot(){if(window.chatbase)window.chatbase('open');}
+
+function openLightbox(src,cap){
+    document.getElementById('lightbox-img').src=src;
+    document.getElementById('lightbox-caption').textContent=cap||'Création BiG FlooW';
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+document.addEventListener('DOMContentLoaded',()=>{
+    document.querySelectorAll('.work-image img').forEach(img=>{
+        img.style.cursor='zoom-in';
+        img.addEventListener('click',()=>{
+            const cap=img.closest('.work-item')?.querySelector('h4')?.textContent||img.alt;
+            openLightbox(img.src,cap);
+        });
+    });
+    document.querySelectorAll('.story-logo-img,.mini-logo,.founder-photo').forEach(img=>{
+        img.style.cursor='zoom-in';
+        img.addEventListener('click',()=>openLightbox(img.src,img.alt||'BiG FlooW'));
+    });
+});
+</script>
+<script>(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...a)=>{if(!window.chatbase.q)window.chatbase.q=[];window.chatbase.q.push(a)};window.chatbase=new Proxy(window.chatbase,{get(t,p){if(p==="q")return t.q;return(...a)=>t(p,...a)}})}const l=function(){const s=document.createElement("script");s.src="https://www.chatbase.co/embed.min.js";s.id="lamcS_rk7GxldSZ8_1qHN";s.domain="www.chatbase.co";document.body.appendChild(s)};if(document.readyState==="complete")l();else window.addEventListener("load",l)})();</script>
 
 </body>
 </html>
