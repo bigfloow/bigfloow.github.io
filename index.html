@@ -14,30 +14,6 @@
 </head>
 <body>
 
-    <!-- PRELOADER - À METTRE ICI TOUT DE SUITE APRÈS <body> -->
-<div class="preloader" id="preloader">
-    <div class="loader"></div>
-    <div class="loader-text">BiG FlooW</div>
-</div>
-
-<!-- SCROLL PROGRESS BAR -->
-<div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- BACK TO TOP BUTTON -->
-<button class="back-to-top" id="backToTop">
-    <i class="fas fa-arrow-up"></i>
-</button>
-
-<!-- MOBILE MENU OVERLAY -->
-<div class="nav-overlay" id="navOverlay"></div>
-
-<!-- TOAST NOTIFICATION -->
-<div class="toast-notification" id="toastNotification">
-    <i class="fas fa-check-circle"></i> Message envoyé avec succès !
-</div>
-
-<!-- Le reste de votre contenu... -->
-    
 <!-- STICKERS DESIGN EN ARRIÈRE-PLAN -->
 <div class="bg-stickers" aria-hidden="true">
     <i class="fas fa-pen-nib sticker s1"></i>
@@ -58,17 +34,14 @@
 
 <nav class="navbar">
     <div class="brand">BiG <span class="floo">Floo</span><span class="w">W</span></div>
-    <button class="hamburger" id="hamburger">
-        <i class="fas fa-bars"></i>
-    </button>
-    <ul class="nav-links" id="navLinks">
+    <ul class="nav-links">
         <li><button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button></li>
         <li><a href="index.html">Accueil</a></li>
         <li><a href="portfolio.html">Graphisme</a></li>
         <li><a href="portfolio-3d.html">3D</a></li>
         <li><a href="portfolio-branding.html">Branding</a></li>
         <li><a href="portfolio-web.html">Web</a></li>
-        <li><a href="#contact" class="btn-contact ripple">Contact</a></li>
+        <li><a href="#contact" class="btn-contact">Contact</a></li>
     </ul>
 </nav>
 
@@ -90,7 +63,7 @@
 <main>
 
 <!-- ==================== EXPERTISES ==================== -->
-<section id="expertises" class="section-padding reveal">
+<section id="expertises" class="section-padding">
     <div class="container">
         <h2 class="section-title">Nos <span class="blue-text">Expertises</span></h2>
 
@@ -146,7 +119,7 @@
          </section>
 
 <!-- ==================== STATS ==================== -->
-<section class="stats-section reveal">
+<section class="stats-section">
     <div class="container">
         <div class="stats-grid">
             <div class="stat-item">
@@ -176,8 +149,81 @@
 <div class="custom-cursor"></div>
 <div class="cursor-dot"></div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    function updateIcon(isDark) {
+        if (!themeToggle) return;
+        const icon = themeToggle.querySelector('i');
+        if (!icon) return;
+
+        if (isDark) icon.classList.replace('fa-moon', 'fa-sun');
+        else icon.classList.replace('fa-sun', 'fa-moon');
+    }
+
+    const currentTheme = localStorage.getItem('bigfloow-theme');
+    if (currentTheme === 'dark') {
+        body.classList.add('dark-theme');
+        updateIcon(true);
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const isDark = body.classList.toggle('dark-theme');
+            localStorage.setItem('bigfloow-theme', isDark ? 'dark' : 'light');
+            updateIcon(isDark);
+        });
+    }
+
+    const cursor = document.querySelector('.custom-cursor');
+    const dot = document.querySelector('.cursor-dot');
+
+    document.addEventListener('mousemove', (e) => {
+        if (cursor && dot) {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            dot.style.left = e.clientX + 'px';
+            dot.style.top = e.clientY + 'px';
+        }
+    });
+
+    const stats = document.querySelectorAll('.stat-number');
+
+    if (stats.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = +entry.target.getAttribute('data-target');
+                    let count = 0;
+
+                    const updateCount = () => {
+                        const speed = target / 50;
+                        if (count < target) {
+                            count += speed;
+                            entry.target.innerText = Math.ceil(count) + "+";
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            entry.target.innerText = target + "+";
+                        }
+                    };
+
+                    updateCount();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        stats.forEach(s => observer.observe(s));
+    }
+
+});
+</script>
+
 <!-- ==================== STORY PARTIE 1 : ORIGINE & MISSION ==================== -->
-<section id="story-part1" class="section-padding story-part reveal">
+<section id="story-part1" class="section-padding story-part">
     <div class="container">
         <div class="story-header">
             <span class="story-label">Notre Histoire</span>
@@ -203,7 +249,7 @@
 </section>
 
 <!-- ==================== STORY PARTIE 2 : PARCOURS & FONDATEUR ==================== -->
-<section id="story-part2" class="section-padding story-part story-part--dark reveal">
+<section id="story-part2" class="section-padding story-part story-part--dark">
     <div class="container">
         <div class="story-header">
             <span class="story-label story-label--light">Notre ADN</span>
@@ -276,12 +322,12 @@
                 <div class="brand" style="color:white; margin-bottom: 20px;">BiG <span class="floo">Floo</span><span class="w">W</span></div>
                 <p>Nous transformons vos visions en réalités visuelles percutantes depuis Lomé.</p>
                 <div class="social-links" style="margin-top: 20px;">
-                   <a href="https://www.facebook.com/profile.php?id=61553550453900" target="_blank" class="social-icon facebook tooltip" data-tooltip="Facebook"><i class="fab fa-facebook-f"></i></a>
-                   <a href="https://www.instagram.com/bigfloow0/" target="_blank" class="social-icon instagram tooltip" data-tooltip="Instagram"><i class="fab fa-instagram"></i></a>
-                   <a href="https://www.tiktok.com/@big.floow" target="_blank" class="social-icon tiktok tooltip" data-tooltip="TikTok"><i class="fab fa-tiktok"></i></a>
-                   <a href="http://www.youtube.com/@BiGFlooWlyrics" target="_blank" class="social-icon youtube tooltip" data-tooltip="YouTube"><i class="fab fa-youtube"></i></a>
-                   <a href="https://www.linkedin.com/company/big-floow/" target="_blank" class="social-icon linkedin tooltip" data-tooltip="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-              </div>
+                    <a href="https://www.facebook.com/profile.php?id=61553550453900" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/bigfloow0/" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@big.floow" target="_blank" class="social-icon tiktok"><i class="fab fa-tiktok"></i></a>
+                    <a href="http://www.youtube.com/@BiGFlooWlyrics" target="_blank" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.linkedin.com/company/big-floow/" target="_blank" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+                </div>
                 <div class="footer-quality-badge">
                     <i class="fas fa-medal"></i>
                     <span>Design Certifié · Togo · 2022</span>
@@ -366,7 +412,32 @@
         <button id="accept-cookie" class="cookie-btn">Accepter</button>
     </div>
 </div>
-    
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const banner = document.getElementById('cookie-banner');
+    const btn = document.getElementById('accept-cookie');
+    if (!localStorage.getItem('bigfloow_cookies')) { banner.style.display = 'block'; }
+    btn.addEventListener('click', function() { localStorage.setItem('bigfloow_cookies', 'true'); banner.style.display = 'none'; });
+});
+function sendFooterDevis(e) {
+    e.preventDefault();
+    const name = document.getElementById('devis-name').value.trim();
+    const service = document.getElementById('devis-service').value;
+    const budget = document.getElementById('devis-budget').value.trim();
+    if (!name || !service) return;
+    const msg = `Bonjour BiG FlooW 👋\n\nJe souhaite un devis pour :\n- Nom : ${name}\n- Service : ${service}${budget ? '\n- Budget estimé : ' + budget + ' FCFA' : ''}\n\nMerci !`;
+    window.open(`https://wa.me/22890498680?text=${encodeURIComponent(msg)}`, '_blank');
+}
+function subscribeNewsletter() {
+    const email = document.getElementById('newsletter-email').value.trim();
+    if (!email || !email.includes('@')) { alert('Veuillez entrer une adresse email valide.'); return; }
+    const msg = `Bonjour BiG FlooW,\nJe souhaite m'inscrire à la newsletter avec l'email : ${email}`;
+    window.open(`https://wa.me/22890498680?text=${encodeURIComponent(msg)}`, '_blank');
+    document.getElementById('newsletter-email').value = '';
+}
+</script>
+
 <script>
 function toggleChatbot() {
     // Strategy: use chatbase API if available, otherwise inject and open
@@ -449,10 +520,6 @@ document.addEventListener('DOMContentLoaded', () => {
 <style>
 .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 50px; font-weight: bold; cursor: pointer; z-index: 10001; }
 </style>
-
-    <!-- Vos autres scripts -->
-
-<script src="script.js"></script>
 
 </body>
 </html>
