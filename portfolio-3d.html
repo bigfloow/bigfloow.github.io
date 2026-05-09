@@ -774,16 +774,19 @@
     <div class="container">
         <div class="footer-container">
             <div class="footer-col branding">
-                <div class="brand" style="color:white;margin-bottom:20px;">BiG <span class="floo">Floo</span><span class="w">W</span></div>
+                <div class="brand" style="color:white; margin-bottom: 20px;">BiG <span class="floo">Floo</span><span class="w">W</span></div>
                 <p>Nous transformons vos visions en réalités visuelles percutantes depuis Lomé.</p>
-                <div class="social-links" style="margin-top:20px;">
-                    <a href="https://www.facebook.com/profile.php?id=61553550453900" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/bigfloow0/" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@big.floow" target="_blank" class="social-icon tiktok"><i class="fab fa-tiktok"></i></a>
-                    <a href="http://www.youtube.com/@BiGFlooWlyrics" target="_blank" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.linkedin.com/company/big-floow/" target="_blank" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61553550453900" target="_blank" rel="noopener noreferrer" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/bigfloow0/" target="_blank" rel="noopener noreferrer" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@big.floow" target="_blank" rel="noopener noreferrer" class="social-icon tiktok"><i class="fab fa-tiktok"></i></a>
+                    <a href="http://www.youtube.com/@BiGFlooWlyrics" target="_blank" rel="noopener noreferrer" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.linkedin.com/company/big-floow/" target="_blank" rel="noopener noreferrer" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <div class="footer-quality-badge"><i class="fas fa-medal"></i><span>Design Certifié · Togo · 2022</span></div>
+                <div class="footer-quality-badge">
+                    <i class="fas fa-medal"></i>
+                    <span>Design Certifié · Togo · 2022</span>
+                </div>
             </div>
             <div class="footer-col">
                 <h4>Navigation</h4>
@@ -799,16 +802,12 @@
             <div class="footer-col">
                 <h4>Contact</h4>
                 <ul>
-                    <li><a href="tel:+22890498680" style="color:inherit;text-decoration:none;"><i class="fas fa-phone-alt" style="color:var(--accent-orange);"></i> +228 90 49 86 80</a></li>
-                    <li><a href="tel:+22897160873" style="color:inherit;text-decoration:none;"><i class="fas fa-phone-alt" style="color:var(--accent-orange);"></i> +228 97 16 08 73</a></li>
-                    <li><a href="mailto:bigfloow0@gmail.com" style="color:inherit;text-decoration:none;"><i class="fas fa-envelope" style="color:var(--accent-orange);"></i> bigfloow0@gmail.com</a></li>
-                    <li><i class="fas fa-map-marker-alt" style="color:var(--accent-orange);"></i> Bd de la Kara, Lomé</li>
-                    <li><a href="https://wa.me/22890498680" target="_blank" class="footer-whatsapp-btn"><i class="fab fa-whatsapp"></i> Écrire sur WhatsApp</a></li>
-                    <li style="margin-top:10px;">
-                        <button onclick="toggleChatbot()" class="footer-help-btn">
-                            <i class="fas fa-robot"></i> Besoin d'aide supplémentaire ?
-                        </button>
-                    </li>
+                    <li><a href="tel:+22890498680"><i class="fas fa-phone-alt"></i> +228 90 49 86 80</a></li>
+                    <li><a href="tel:+22897160873"><i class="fas fa-phone-alt"></i> +228 97 16 08 73</a></li>
+                    <li><a href="mailto:bigfloow0@gmail.com"><i class="fas fa-envelope"></i> bigfloow0@gmail.com</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> Bd de la Kara, Lomé</li>
+                    <li><a href="https://wa.me/22890498680" target="_blank" rel="noopener noreferrer" class="footer-whatsapp-btn"><i class="fab fa-whatsapp"></i> Écrire sur WhatsApp</a></li>
+                    <li><button onclick="toggleChatbot()" class="footer-help-btn"><i class="fas fa-robot"></i> Besoin d'aide supplémentaire ?</button></li>
                 </ul>
             </div>
             <div class="footer-col footer-col--devis">
@@ -816,14 +815,14 @@
                 <p class="footer-devis-intro">Un projet en tête ? Dites-nous en plus :</p>
                 <form class="footer-devis-form" onsubmit="sendFooterDevis(event)">
                     <input type="text" id="devis-name" placeholder="Votre nom" required>
-                    <select id="devis-service">
+                    <select id="devis-service" required>
                         <option value="" disabled selected>Type de service</option>
-                        <option>Graphisme / Logo</option>
-                        <option>Modélisation 3D</option>
-                        <option>Branding complet</option>
-                        <option>Création de site internet</option>
-                        <option>Contenu vidéo</option>
-                        <option>Autre</option>
+                        <option value="Graphisme / Logo">Graphisme / Logo</option>
+                        <option value="Modélisation 3D">Modélisation 3D</option>
+                        <option value="Branding complet">Branding complet</option>
+                        <option value="Création de site internet">Création de site internet</option>
+                        <option value="Contenu vidéo">Contenu vidéo</option>
+                        <option value="Autre">Autre</option>
                     </select>
                     <input type="text" id="devis-budget" placeholder="Budget estimé (FCFA)">
                     <button type="submit" class="footer-devis-btn"><i class="fab fa-whatsapp"></i> Envoyer via WhatsApp</button>
@@ -832,19 +831,24 @@
         </div>
         <div class="footer-newsletter">
             <div class="footer-newsletter-inner">
-                <div class="footer-newsletter-text"><i class="fas fa-bell" style="color:var(--accent-orange);margin-right:10px;"></i><span>Restez informé de nos dernières créations</span></div>
+                <div class="footer-newsletter-text">
+                    <i class="fas fa-bell"></i>
+                    <span>Restez informé de nos dernières créations</span>
+                </div>
                 <div class="footer-newsletter-form">
-                    <input type="email" id="newsletter-email" placeholder="Votre adresse email">
+                    <input type="email" id="newsletter-email" placeholder="Votre adresse email" required>
                     <button onclick="subscribeNewsletter()" class="newsletter-btn">S'inscrire</button>
+                <div class="footer-bottom-links">
+                   <a href="mentions-legales.html" class="legal-btn"><i class="fas fa-gavel"></i> Mentions légales</a>
+                   <a href="politique-confidentialite.html" class="legal-btn"><i class="fas fa-shield-alt"></i> Confidentialité</a>
                 </div>
             </div>
         </div>
     </div>
     <div class="footer-bottom">
-        <div style="height:4px;background:linear-gradient(to right,#000 33%,#ED7F10 33% 66%,#007FFF 66%);"></div>
+        <div class="line-gradient"></div>
         <div class="footer-bottom-inner">
-            <p style="font-size:0.8rem;color:#666;">© 2026 <span style="color:#ED7F10;">BiG FlooW</span> – Tous droits réservés. Design par Victor HALLO.</p>
-            <div class="footer-bottom-links"><a href="#">Mentions légales</a><a href="#">Politique de confidentialité</a></div>
+            <p>© 2026 <span style="color: #ED7F10;">BiG FlooW</span> – Tous droits réservés. Design par Victor HALLO.</p>
         </div>
     </div>
 </footer>
@@ -857,14 +861,12 @@
     </div>
 </div>
 
-<div id="lightbox" class="lightbox" onclick="if(event.target===this)closeLightbox()">
-    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-    <div class="lightbox-content-wrapper">
-        <img id="lightbox-img" src="" alt="Aperçu" class="lightbox-content">
-    </div>
+<div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="Aperçu" class="lightbox-content">
     <div id="lightbox-caption"></div>
 </div>
-
+    
 <script>
 const themeToggle = document.getElementById('theme-toggle');
 function updateIcon(d){if(!themeToggle)return;const i=themeToggle.querySelector('i');if(d)i.classList.replace('fa-moon','fa-sun');else i.classList.replace('fa-sun','fa-moon');}
