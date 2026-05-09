@@ -109,25 +109,6 @@ body {
 .btn-contact:hover { background: var(--accent-orange) !important; border-color: var(--accent-orange); color: white !important; transform: translateY(-2px); }
 
 /* =========================================
-   PORTFOLIO TOOLBAR — FIXÉE EN HAUT
-   ========================================= */
-.port-toolbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
-    z-index: 999;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-}
-
-.port-hero {
-    padding-top: 150px;
-}
-
-/* =========================================
    HERO
    ========================================= */
 .hero {
