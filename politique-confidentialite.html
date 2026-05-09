@@ -33,6 +33,12 @@
             margin: 30px 0 15px 0;
             color: var(--accent-orange);
         }
+        .legal-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            margin: 20px 0 10px;
+            color: var(--accent-blue);
+        }
         .legal-card p, .legal-card li {
             color: #444;
             line-height: 1.7;
@@ -73,6 +79,14 @@
         body.dark-theme .legal-card strong {
             color: var(--accent-blue);
         }
+        /* Correction pour que la navbar reste fixe */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -92,7 +106,7 @@
     <div class="legal-container">
         <div class="legal-card">
             <h1>🔒 Politique de confidentialité</h1>
-            <p>Chez <strong>BiG FlooW</strong>, nous accordons une grande importance à la protection de vos données personnelles. Cette politique explique quelles informations nous collectons et comment nous les utilisons.</p>
+            <p>Chez <strong>BiG FlooW</strong>, nous accordons une grande importance à la protection de vos données personnelles. Cette politique détaille les informations que nous collectons, la manière dont nous les utilisons et les droits dont vous disposez.</p>
 
             <h2>Collecte des informations</h2>
             <p>Nous pouvons recueillir les données suivantes lorsque vous interagissez avec notre site :</p>
@@ -101,30 +115,70 @@
                 <li>Adresse email (newsletter, contact)</li>
                 <li>Numéro de téléphone (devis, WhatsApp)</li>
                 <li>Budget et type de service (uniquement pour devis)</li>
+                <li>Adresse IP et données de navigation (à des fins statistiques anonymes)</li>
             </ul>
 
             <h2>Utilisation des données</h2>
             <p>Vos informations sont utilisées uniquement pour :</p>
             <ul>
                 <li>Répondre à vos demandes de devis ou questions</li>
-                <li>Vous envoyer notre newsletter (avec votre consentement)</li>
+                <li>Vous envoyer notre newsletter (avec votre consentement explicite)</li>
                 <li>Améliorer nos services et la navigation sur le site</li>
+                <li>Respecter nos obligations légales</li>
+            </ul>
+
+            <h2>Base légale du traitement</h2>
+            <p>Nous traitons vos données personnelles sur la base de :</p>
+            <ul>
+                <li>Votre consentement (pour la newsletter, les cookies)</li>
+                <li>L’exécution de mesures précontractuelles (devis, demande de contact)</li>
+                <li>Notre intérêt légitime à améliorer nos services</li>
+                <li>Obligations légales (conservation de factures, etc.)</li>
+            </ul>
+
+            <h2>Durée de conservation</h2>
+            <p>Vos données sont conservées le temps nécessaire à la gestion de votre demande, puis archivées ou supprimées conformément à la réglementation :</p>
+            <ul>
+                <li>Demandes de devis : 3 ans à compter du dernier contact</li>
+                <li>Newsletter : jusqu’à désinscription</li>
+                <li>Données comptables : 10 ans (obligation légale)</li>
             </ul>
 
             <h2>Cookies</h2>
-            <p>Nous utilisons un cookie unique pour mémoriser votre acceptation de la bannière cookies. Aucun cookie de traçage tiers n’est déposé sans votre accord.</p>
+            <p>Nous utilisons un cookie unique pour mémoriser votre acceptation de la bannière cookies. Ce cookie est strictement nécessaire et ne nécessite pas votre consentement explicite. Aucun cookie de traçage tiers n’est déposé sans votre accord préalable.</p>
+            <p>Vous pouvez à tout moment supprimer ces cookies via les paramètres de votre navigateur.</p>
 
             <h2>Partage des données</h2>
-            <p>BiG FlooW ne vend, n’échange ni ne transfère vos données personnelles à des tiers. Les informations peuvent être partagées uniquement avec votre consentement explicite (ex: devis via WhatsApp).</p>
+            <p>BiG FlooW ne vend, n’échange ni ne transfère vos données personnelles à des tiers. Les seules exceptions concernent :</p>
+            <ul>
+                <li>Les partenaires techniques strictement nécessaires (hébergeur, formulaire de contact)</li>
+                <li>Votre consentement explicite (exemple : transfert vers WhatsApp pour un devis)</li>
+                <li>Une obligation légale (réquisition judiciaire)</li>
+            </ul>
 
-            <h2>Sécurité</h2>
-            <p>Nous mettons en œuvre des mesures de sécurité pour protéger vos données contre tout accès non autorisé.</p>
+            <h2>Sécurité des données</h2>
+            <p>Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles pour protéger vos données contre tout accès non autorisé, perte, altération ou divulgation. Cela inclut le chiffrement des échanges (HTTPS) et un accès restreint aux données.</p>
 
             <h2>Vos droits</h2>
-            <p>Conformément à la réglementation applicable (loi togolaise et RGPD pour les résidents européens), vous disposez d’un droit d’accès, de rectification et de suppression de vos données. Pour l’exercer, contactez-nous à <a href="mailto:bigfloow0@gmail.com">bigfloow0@gmail.com</a>.</p>
+            <p>Conformément à la réglementation applicable (loi togolaise et RGPD pour les résidents européens), vous disposez des droits suivants :</p>
+            <ul>
+                <li><strong>Droit d’accès</strong> : obtenir confirmation que vos données sont traitées et y accéder.</li>
+                <li><strong>Droit de rectification</strong> : faire corriger des données inexactes.</li>
+                <li><strong>Droit à l’effacement</strong> (droit à l’oubli) : dans certaines conditions.</li>
+                <li><strong>Droit à la limitation du traitement</strong> : dans certains cas.</li>
+                <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format structuré.</li>
+                <li><strong>Droit d’opposition</strong> : vous opposer au traitement pour motifs légitimes.</li>
+            </ul>
+            <p>Pour exercer ces droits, contactez-nous à <a href="mailto:bigfloow0@gmail.com">bigfloow0@gmail.com</a>. Nous avons un délai d’un mois pour répondre.</p>
 
-            <h2>Modifications</h2>
-            <p>Cette politique peut être mise à jour. La date de la dernière version est indiquée en bas de page.</p>
+            <h2>Transferts hors de l’UE</h2>
+            <p>Vos données sont hébergées au sein de l’Union européenne (via GitHub Pages). Aucun transfert hors UE n’est réalisé sans garanties appropriées.</p>
+
+            <h2>Modifications de la politique</h2>
+            <p>Cette politique peut être mise à jour pour refléter des changements légaux ou nos pratiques. La date de la dernière version apparaît en bas de page. Nous vous invitons à la consulter régulièrement.</p>
+
+            <h2>Contact délégué à la protection des données</h2>
+            <p>Pour toute question relative à cette politique ou à vos données personnelles, vous pouvez écrire à : <strong>Victor HALLO</strong> à l’adresse <a href="mailto:bigfloow0@gmail.com">bigfloow0@gmail.com</a>.</p>
 
             <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
         </div>
@@ -133,7 +187,7 @@
     <footer class="main-footer" style="margin-top: 60px;">
         <div class="container">
             <div class="footer-bottom-inner" style="justify-content: center;">
-                <p>© 2026 <span style="color: #ED7F10;">BiG FlooW</span> – Tous droits réservés.</p>
+                <p>© 2026 <span style="color: #ED7F10;">BiG FlooW</span> – Tous droits réservés. Dernière mise à jour : mai 2026.</p>
             </div>
         </div>
     </footer>
