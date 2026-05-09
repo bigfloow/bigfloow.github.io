@@ -3,91 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BiG FlooW - Branding Premium à Lomé. Stratégie de marque, identité visuelle.">
+    <meta name="description" content="BiG FlooW - Portfolio Branding créatif à Lomé.">
     <title>BiG FlooW | Branding</title>
-    <link rel="icon" type="image/png" href="fac2_logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
     <style>
-        /* Styles spécifiques au branding (garder l'existant) */
-        .port-hero { height: 55vh; min-height: 300px; position: relative; display: flex; align-items: flex-end; justify-content: flex-start; overflow: hidden; padding-top: 70px; }
-        .port-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transform: scale(1.04); transition: transform 8s ease; }
-        .port-hero:hover .port-hero-bg { transform: scale(1); }
-        .port-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%); }
-        .port-hero-content { position: relative; z-index: 2; padding: 0 8% 50px; width: 100%; }
-        .port-hero-label { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.85); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; padding: 5px 14px; border-radius: 20px; margin-bottom: 15px; }
-        .port-hero-content h1 { font-family: "Montserrat", sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; color: white; text-transform: uppercase; letter-spacing: 4px; margin: 0 0 15px; line-height: 1; }
-        .port-hero-content h1 span { color: var(--accent-orange); }
-        .port-hero-desc { color: rgba(255,255,255,0.7); font-size: 1rem; max-width: 600px; line-height: 1.7; }
-        .port-tricolor { height: 5px; background: linear-gradient(to right,#000 33%,#ED7F10 33% 66%,#007FFF 66%); }
-        .port-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; padding: 25px 8% 0; max-width: 1300px; margin: 0 auto; }
-        .back-pill { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-blue); color: white; padding: 10px 24px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
-        .back-pill:hover { background: var(--accent-orange); transform: translateX(-3px); }
-        .port-stats-bar { display: flex; gap: 20px; flex-wrap: wrap; }
-        .port-stat { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--text-soft); font-weight: 600; }
-        .port-stat i { color: var(--accent-blue); }
-        .branding-strategy { padding: 80px 8%; max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .strategy-text h2 { font-family: "Montserrat", sans-serif; font-size: 2.5rem; font-weight: 800; margin-bottom: 25px; color: var(--dark-grey); text-transform: uppercase; }
-        .strategy-text h2 span { color: var(--accent-blue); }
-        .strategy-text p { color: var(--text-soft); line-height: 1.8; margin-bottom: 20px; font-size: 0.95rem; text-align: justify; }
-        .strategy-visual { background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.06); border: 1px solid #eee; }
-        .strategy-visual img { width: 100%; border-radius: 8px; display: block; }
-        .portfolio-section { padding: 40px 0 100px; }
-        .portfolio-grid-new { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; padding: 0 8%; max-width: 1300px; margin: 0 auto; }
-        .work-item { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.05); transition: all 0.4s cubic-bezier(0.165,0.84,0.44,1); cursor: pointer; }
-        .work-item:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(0,127,255,0.18); border-color: rgba(0,127,255,0.25); }
-        .work-image { width: 100%; height: 260px; overflow: hidden; position: relative; }
-        .work-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
-        .work-item:hover .work-image img { transform: scale(1.1); }
-        .work-image::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(to right,#000 33.33%,#ED7F10 33.33% 66.66%,#007FFF 66.66%); }
-        .work-desc { padding: 20px 25px 25px; }
-        .work-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-        .category { color: var(--accent-blue); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; }
-        .work-desc h4 { margin: 0 0 10px; font-family: "Montserrat", sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--dark-grey); }
-        .work-desc p { font-size: 0.85rem; color: var(--text-soft); line-height: 1.6; margin-bottom: 15px; }
-        .work-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 600; color: var(--accent-orange); text-decoration: none; transition: 0.3s; }
-        .work-cta:hover { color: var(--accent-blue); gap: 12px; }
-        .port-cta-band { background: linear-gradient(135deg, #001020, #000000); padding: 80px 8%; text-align: center; }
-        .port-cta-band h3 { font-family: "Montserrat", sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: white; margin-bottom: 15px; }
-        .port-cta-band h3 span { color: var(--accent-orange); }
-        .port-cta-band p { color: rgba(255,255,255,0.6); font-size: 1rem; margin-bottom: 35px; }
-        .port-cta-btn { display: inline-flex; align-items: center; gap: 10px; background: #25d366; color: white; padding: 16px 36px; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: 0.3s; box-shadow: 0 10px 30px rgba(37,211,102,0.3); }
-        .port-cta-btn:hover { transform: translateY(-3px); box-shadow: 0 18px 45px rgba(37,211,102,0.4); }
-        body.dark-theme .work-item { background: #1a1a1a; border-color: #2a2a2a; }
-        body.dark-theme .work-desc h4 { color: #fff; }
-        body.dark-theme .strategy-text h2 { color: #fff; }
-        body.dark-theme .branding-strategy { background: #121212; }
-        body.dark-theme .strategy-visual { background: #1a1a1a; border-color: #2a2a2a; }
-        @media (max-width: 992px) {
-            .branding-strategy { grid-template-columns: 1fr; gap: 40px; padding: 60px 5%; }
-            .portfolio-grid-new { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); padding: 0 5%; }
-            .port-toolbar { padding: 20px 5% 0; }
-            .port-hero-content { padding: 0 5% 40px; }
+        /* DESIGN PROFESSIONNEL BIG FLOOW */
+        body { background-color: #f6f8fa; margin: 0; font-family: 'Poppins', sans-serif; }
+
+        .portfolio-hero {
+            height: 35vh;
+            background: url('Big foow.jpg') center/cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 5px solid #ED7F10;
         }
+
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+        }
+
+        .portfolio-hero h1 {
+            position: relative;
+            color: white;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            z-index: 2;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px 8% 80px;
+        }
+
+        /* CADRE MODERNE */
+        .work-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .work-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,127,255,0.15);
+        }
+
+        .work-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .work-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .work-item:hover .work-image img { transform: scale(1.1); }
+
+        /* LIGNE TRICOLORE SIGNATURE */
+        .work-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, #000 33%, #ED7F10 33% 66%, #007FFF 66%);
+            z-index: 5;
+        }
+
+        .work-desc { padding: 20px; text-align: center; background: #fff; }
+        .category { color: #007FFF; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 5px; }
+        h4 { margin: 0; color: #1a1a1a; font-family: 'Montserrat', sans-serif; font-size: 1.1rem; }
+
+        .back-btn {
+            display: inline-block; padding: 12px 30px; border: 2px solid #ED7F10;
+            color: #333; border-radius: 5px; text-decoration: none; font-weight: 600;
+            transition: 0.3s; margin-top: 20px;
+        }
+        .back-btn:hover { background: #ED7F10; color: white; }
     </style>
 </head>
 <body>
 
-<!-- GLOBAL ELEMENTS -->
-<div class="preloader" id="preloader"><div class="loader"></div><div class="loader-text">BiG FlooW</div></div>
-<div class="scroll-progress" id="scrollProgress"></div>
-<button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
-<div class="nav-overlay" id="navOverlay"></div>
-<div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i> Message envoyé avec succès !</div>
-
-<!-- NAVBAR -->
 <nav class="navbar">
-    <div class="brand">BiG <span class="floo">Floo</span><span class="w">W</span></div>
-    <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
-    <ul class="nav-links" id="navLinks">
-        <li><button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button></li>
+    <div class="brand">BiG<span class="floo">Floo</span><span class="w">W</span></div>
+    <ul class="nav-links">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="portfolio.html">Graphisme</a></li>
         <li><a href="portfolio-3d.html">3D</a></li>
         <li><a href="portfolio-branding.html">Branding</a></li>
-        <li><a href="portfolio-web.html">Web</a></li>
-        <li><a href="#contact" class="btn-contact">Contact</a></li>
+        <li><a href="index.html#contact" class="btn-contact">Contact</a></li>
     </ul>
 </nav>
 
