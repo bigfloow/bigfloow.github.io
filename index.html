@@ -147,10 +147,9 @@
         <div class="container">
             <div class="story-header">
                 <span class="story-label story-label--light">Notre ADN</span>
-                <h2 class="section-title" style="text-align:left; color: #fff;">Parcours & <span class="highlight">Expertise</span></h2>
+                <h2 class="section-title" style="text-align:left;">Parcours & <span class="highlight">Expertise</span></h2>
             </div>
             <div class="story-founder-grid">
-                <!-- Carte fondateur avec photo ronde -->
                 <div class="founder-card">
                     <div class="founder-photo-container">
                         <img src="image.webp" alt="M. Victor HALLO" class="founder-photo-img">
@@ -299,14 +298,12 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Thème
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
     function updateIcon(isDark) { if(themeToggle) { const icon = themeToggle.querySelector('i'); if(icon) isDark ? icon.classList.replace('fa-moon','fa-sun') : icon.classList.replace('fa-sun','fa-moon'); } }
     if(localStorage.getItem('bigfloow-theme') === 'dark') { body.classList.add('dark-theme'); updateIcon(true); }
     if(themeToggle) themeToggle.addEventListener('click', () => { body.classList.toggle('dark-theme'); localStorage.setItem('bigfloow-theme', body.classList.contains('dark-theme') ? 'dark' : 'light'); updateIcon(body.classList.contains('dark-theme')); });
     
-    // Stats counter
     const stats = document.querySelectorAll('.stat-number');
     if(stats.length) {
         const observer = new IntersectionObserver((entries) => {
@@ -322,13 +319,11 @@ document.addEventListener('DOMContentLoaded', function() {
         stats.forEach(s => observer.observe(s));
     }
     
-    // Cookie
     const banner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('accept-cookie');
     if(!localStorage.getItem('bigfloow_cookies')) banner.style.display = 'block';
     if(acceptBtn) acceptBtn.addEventListener('click', () => { localStorage.setItem('bigfloow_cookies', 'true'); banner.style.display = 'none'; });
     
-    // Lightbox pour logos
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.getElementById('lightbox-caption');
@@ -358,7 +353,6 @@ function subscribeNewsletter() {
 }
 function toggleChatbot() { if(window.chatbase) window.chatbase('open'); else setTimeout(toggleChatbot, 500); }
 
-// Chatbase
 window.chatbaseConfig = { chatbotId: "lamcS_rk7GxldSZ8_1qHN", defaultOpen: false, hideButton: true };
 (function(){ if(!window.chatbase||window.chatbase("getState")!=="initialized"){ window.chatbase=(...a)=>{if(!window.chatbase.q)window.chatbase.q=[];window.chatbase.q.push(a)}; window.chatbase=new Proxy(window.chatbase,{get(t,p){if(p==="q")return t.q;return(...a)=>t(p,...a)}}); } const s=document.createElement("script"); s.src="https://www.chatbase.co/embed.min.js"; s.id="lamcS_rk7GxldSZ8_1qHN"; s.domain="www.chatbase.co"; document.body.appendChild(s); })();
 </script>
