@@ -390,12 +390,12 @@ body {
 .footer-col h4 { color: var(--accent-orange); font-family: 'Montserrat'; margin-bottom: 20px; font-size: 0.85rem; text-transform: uppercase; }
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: 10px; font-size: 0.85rem; }
-.footer-col a { color: #FFFCFC; text-decoration: none; transition: 0.3s; }
+.footer-col a { color: #FCFCFC; text-decoration: none; transition: 0.3s; }
 .social-links { display: flex; gap: 12px; margin-top: 15px; flex-wrap: wrap; }
 .social-icon { width: 40px; height: 40px; background: #111; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; font-size: 1rem; transition: var(--transition); }
 .footer-whatsapp-btn, .footer-devis-btn, .newsletter-btn { background: #25d366; color: white; border: none; padding: 10px 16px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
 .footer-devis-form { display: flex; flex-direction: column; gap: 10px; }
-.footer-devis-form input, .footer-devis-form select { background: #111; border: 1px solid #FFFFFF; border-radius: 6px; color: #ddd; padding: 8px 12px; font-size: 0.8rem; }
+.footer-devis-form input, .footer-devis-form select { background: #111; border: 1px solid #FCFCFC; border-radius: 6px; color: #ddd; padding: 8px 12px; font-size: 0.8rem; }
 .footer-newsletter { border-top: 1px solid #1a1a1a; padding: 25px 0; background: #080808; margin-top: 20px; }
 .footer-newsletter-inner { display: flex; flex-direction: column; gap: 15px; align-items: flex-start; }
 .footer-newsletter-form { display: flex; flex-direction: column; gap: 10px; width: 100%; }
