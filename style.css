@@ -109,6 +109,25 @@ body {
 .btn-contact:hover { background: var(--accent-orange) !important; border-color: var(--accent-orange); color: white !important; transform: translateY(-2px); }
 
 /* =========================================
+   PORTFOLIO TOOLBAR — FIXÉE EN HAUT
+   ========================================= */
+.port-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+.port-hero {
+    padding-top: 150px;
+}
+
+/* =========================================
    HERO
    ========================================= */
 .hero {
@@ -438,29 +457,29 @@ body {
 .footer-col a:hover { color: white; }
 
 .footer-link-icon { font-size: 0.6rem; color: var(--accent-orange); margin-right: 8px; }
-.footer-new-tag { background: var(--accent-orange); color: white; font-size: 0.6rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; text-transform: uppercase; }
-.footer-quality-badge { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; background: #111; border: 1px solid #333; border-radius: 30px; padding: 8px 16px; font-size: 0.75rem; color: #aaa; }
+.footer-new-tag { background: var(--accent-orange); color: white; font-size: 0.6rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; text-transf[...]
+.footer-quality-badge { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; background: #111; border: 1px solid #333; border-radius: 30px; padding: 8px 16px; font-size: 0.75rem[...]
 .footer-quality-badge i { color: var(--accent-orange); }
 
-.footer-whatsapp-btn { display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: white !important; padding: 10px 18px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; text-decoration: none !important; transition: 0.3s; margin-top: 5px; }
+.footer-whatsapp-btn { display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: white !important; padding: 10px 18px; border-radius: 8px; font-size: 0.85rem; font-weight: [...]
 .footer-whatsapp-btn:hover { background: #20ba58; transform: translateY(-2px); }
 
 .footer-col--devis p.footer-devis-intro { color: #888; font-size: 0.85rem; margin-bottom: 15px; }
 .footer-devis-form { display: flex; flex-direction: column; gap: 10px; }
-.footer-devis-form input, .footer-devis-form select { background: #111; border: 1px solid #333; border-radius: 6px; color: #ddd; padding: 10px 14px; font-size: 0.85rem; font-family: 'Poppins', sans-serif; transition: 0.3s; outline: none; width: 100%; }
+.footer-devis-form input, .footer-devis-form select { background: #111; border: 1px solid #333; border-radius: 6px; color: #ddd; padding: 10px 14px; font-size: 0.85rem; font-family: 'Poppins', sa[...]
 .footer-devis-form input::placeholder { color: #555; }
 .footer-devis-form select option { background: #111; color: #ddd; }
 .footer-devis-form input:focus, .footer-devis-form select:focus { border-color: var(--accent-orange); }
-.footer-devis-btn { background: #25d366; color: white; border: none; border-radius: 6px; padding: 12px 16px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; font-family: 'Poppins', sans-serif; }
+.footer-devis-btn { background: #25d366; color: white; border: none; border-radius: 6px; padding: 12px 16px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: cen[...]
 .footer-devis-btn:hover { background: #20ba58; transform: translateY(-2px); }
 
 .footer-newsletter { border-top: 1px solid #1a1a1a; padding: 30px 5%; margin: 0 -5%; background: #080808; }
 .footer-newsletter-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .footer-newsletter-text { font-size: 0.95rem; color: #aaa; display: flex; align-items: center; }
 .footer-newsletter-form { display: flex; gap: 10px; flex-wrap: wrap; }
-.footer-newsletter-form input[type="email"] { background: #111; border: 1px solid #333; border-radius: 6px; color: #ddd; padding: 10px 16px; font-size: 0.85rem; font-family: 'Poppins', sans-serif; outline: none; width: 250px; transition: 0.3s; }
+.footer-newsletter-form input[type="email"] { background: #111; border: 1px solid #333; border-radius: 6px; color: #ddd; padding: 10px 16px; font-size: 0.85rem; font-family: 'Poppins', sans-serif[...]
 .footer-newsletter-form input[type="email"]:focus { border-color: var(--accent-orange); }
-.newsletter-btn { background: var(--accent-orange); color: white; border: none; border-radius: 6px; padding: 10px 22px; font-size: 0.85rem; font-weight: 700; cursor: pointer; font-family: 'Poppins', sans-serif; transition: 0.3s; }
+.newsletter-btn { background: var(--accent-orange); color: white; border: none; border-radius: 6px; padding: 10px 22px; font-size: 0.85rem; font-weight: 700; cursor: pointer; font-family: 'Poppin[...]
 .newsletter-btn:hover { background: #c96a00; transform: translateY(-2px); }
 
 .footer-bottom { background: #000; }
@@ -470,21 +489,21 @@ body {
 .footer-bottom-links a:hover { color: #888; }
 
 .social-links { display: flex; gap: 15px; }
-.social-icon { width: 45px; height: 45px; background: #111; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; font-size: 1.2rem; transition: var(--transition); }
+.social-icon { width: 45px; height: 45px; background: #111; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; font-size: 1.2rem; transition: var(--tra[...]
 .facebook:hover { background: #1877F2; }
 .instagram:hover { background: #E4405F; }
 .tiktok:hover { background: #000; border: 1px solid #fff; }
 .youtube:hover { background: #CD201F; }
 .linkedin:hover { background: #0077B5; }
 
-.whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2rem; box-shadow: 0 10px 30px rgba(37,211,102,0.3); z-index: 999; }
+.whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items[...]
 
 /* =========================================
    COOKIE
    ========================================= */
-.cookie-box { position: fixed; bottom: 20px; left: 20px; right: 20px; max-width: 400px; background: #000; color: #fff; padding: 20px; border-radius: 10px; z-index: 10000; display: none; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.cookie-box { position: fixed; bottom: 20px; left: 20px; right: 20px; max-width: 400px; background: #000; color: #fff; padding: 20px; border-radius: 10px; z-index: 10000; display: none; box-shado[...]
 .cookie-content { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; }
-.cookie-box .cookie-btn { background: var(--accent-blue) !important; color: #fff !important; border: none !important; padding: 12px 30px !important; font-weight: 600 !important; border-radius: 5px !important; cursor: pointer !important; align-self: flex-end; }
+.cookie-box .cookie-btn { background: var(--accent-blue) !important; color: #fff !important; border: none !important; padding: 12px 30px !important; font-weight: 600 !important; border-radius: 5p[...]
 
 /* =========================================
    DARK THEME
@@ -622,7 +641,7 @@ body.dark-theme .expertise-card--wide { background: linear-gradient(135deg, #1a1
 .hero-content-portfolio { position: relative; z-index: 2; width: 100%; margin-top: 80px; }
 .hero-content-portfolio h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-family: 'Montserrat'; font-weight: 800; margin-bottom: 15px; }
 .portfolio-video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; padding: 20px 0; }
-.video-portfolio-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: var(--transition); border: 1px solid rgba(0,0,0,0.03); }
+.video-portfolio-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: var(--transition); border: 1px solid rgba(0,0,0,0.03[...]
 .video-portfolio-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: rgba(0,127,255,0.2); }
 .card-cover-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
 .video-cover { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
@@ -634,7 +653,7 @@ body.dark-theme .expertise-card--wide { background: linear-gradient(135deg, #1a1
 .video-card-info h3 { font-size: 1.15rem; font-weight: 600; color: var(--dark-grey); margin-bottom: 8px; line-height: 1.4; }
 .video-type { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-blue); font-weight: 700; margin-bottom: 20px; }
 .card-action-links { display: flex; gap: 10px; flex-wrap: wrap; }
-.action-btn { text-decoration: none; font-size: 0.8rem; font-weight: 600; padding: 10px 20px; border-radius: 30px; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; }
+.action-btn { text-decoration: none; font-size: 0.8rem; font-weight: 600; padding: 10px 20px; border-radius: 30px; transition: var(--transition); display: inline-flex; align-items: center; gap: 8[...]
 .youtube-btn { background: rgba(205,32,31,0.1); color: #CD201F; }
 .youtube-btn:hover { background: #CD201F; color: white; }
 .tiktok-btn { background: rgba(0,0,0,0.1); color: #000; }
@@ -650,7 +669,7 @@ body.dark-theme .expertise-card--wide { background: linear-gradient(135deg, #1a1
 @keyframes zoomIn { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
 .close-modal { position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; }
 .close-modal:hover { color: var(--accent-orange); }
-#caption { margin: auto; display: block; width: 80%; text-align: center; color: #ccc; padding: 20px 0; font-family: 'Montserrat'; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+#caption { margin: auto; display: block; width: 80%; text-align: center; color: #ccc; padding: 20px 0; font-family: 'Montserrat'; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;[...]
 
 /* =========================================
    RESPONSIF
