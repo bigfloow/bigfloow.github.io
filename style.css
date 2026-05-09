@@ -166,25 +166,17 @@ body {
 .section-title { text-align: center; font-family: 'Montserrat'; font-size: clamp(1.8rem, 5vw, 2.5rem); margin-bottom: 40px; }
 .blue-text { color: var(--accent-blue); }
 
-/* Grille principale : 4 colonnes sur desktop */
 .expertise-grid--top {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 25px;
     margin-bottom: 30px;
 }
-
-/* Sur tablette : 2 colonnes */
 @media (max-width: 992px) {
-    .expertise-grid--top {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .expertise-grid--top { grid-template-columns: repeat(2, 1fr); }
 }
-/* Sur mobile : 1 colonne */
 @media (max-width: 576px) {
-    .expertise-grid--top {
-        grid-template-columns: 1fr;
-    }
+    .expertise-grid--top { grid-template-columns: 1fr; }
 }
 
 .expertise-grid--bottom { display: grid; grid-template-columns: 1fr; gap: 0; margin-top: 10px; }
@@ -289,7 +281,6 @@ body {
 }
 .story-block h3 { font-size: 1rem; margin-bottom: 10px; }
 .story-block p { font-size: 0.9rem; color: #555; }
-/* Texte en gras : orange en mode clair */
 .story-block p strong {
     color: var(--accent-orange);
     font-weight: 700;
@@ -441,11 +432,11 @@ body {
 .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
 
 /* =========================================
-   DARK THEME - TOUCHE BLEUE
+   DARK THEME - FOND NOIR, TEXTES BLANCS
    ========================================= */
 body.dark-theme {
     background-color: #121212;
-    color: #e0e0e0;
+    color: #ffffff;
 }
 body.dark-theme .expertise-card,
 body.dark-theme .story-block,
@@ -455,7 +446,7 @@ body.dark-theme .cert-mini-block,
 body.dark-theme .story-block--light {
     background: #1e1e1e;
     border-color: #333;
-    color: #e0e0e0;
+    color: #ffffff;
 }
 body.dark-theme .navbar {
     background: rgba(18,18,18,0.95);
@@ -463,26 +454,35 @@ body.dark-theme .navbar {
 }
 body.dark-theme .brand,
 body.dark-theme .nav-links a {
-    color: #fff;
+    color: #ffffff;
+}
+/* Partie "Notre histoire" fond noir */
+body.dark-theme .story-part {
+    background: #0a0a0a;
 }
 body.dark-theme .story-part--dark {
-    background: #0f0f0f;
+    background: #0a0a0a;
+}
+body.dark-theme .story-block p,
+body.dark-theme .story-block--light p,
+body.dark-theme .logo-caption,
+body.dark-theme .cert-mini-block p,
+body.dark-theme .founder-badge {
+    color: #e0e0e0;
 }
 body.dark-theme .founder-badge {
-    background: #222;
+    background: #2a2a2a;
     border-color: #444;
-    color: #ccc;
 }
 body.dark-theme .story-logo-img {
     filter: grayscale(100%) brightness(1.2);
 }
-/* Les textes en gras deviennent bleus en mode sombre */
+/* Les textes en gras deviennent bleus en mode sombre (touche bleue) */
 body.dark-theme .story-block p strong,
 body.dark-theme .story-block--light p strong,
 body.dark-theme p strong {
     color: var(--accent-blue) !important;
 }
-/* Également pour les titres highlight */
 body.dark-theme .highlight {
     color: var(--accent-blue);
 }
@@ -501,6 +501,12 @@ body.dark-theme .stats-section {
 }
 body.dark-theme .footer-col a:hover {
     color: var(--accent-blue);
+}
+body.dark-theme .expertise-card h3,
+body.dark-theme .expertise-card p,
+body.dark-theme .story-block h3,
+body.dark-theme .founder-info h3 {
+    color: #ffffff;
 }
 
 /* =========================================
