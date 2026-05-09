@@ -34,6 +34,12 @@
             margin: 30px 0 15px 0;
             color: var(--accent-orange);
         }
+        .legal-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            margin: 20px 0 10px;
+            color: var(--accent-blue);
+        }
         .legal-card p, .legal-card li {
             color: #444;
             line-height: 1.7;
@@ -74,6 +80,14 @@
         body.dark-theme .legal-card strong {
             color: var(--accent-blue);
         }
+        /* Correction : navbar déjà fixe dans style.css, on vérifie qu'elle reste */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -93,7 +107,7 @@
     <div class="legal-container">
         <div class="legal-card">
             <h1>📄 Mentions légales</h1>
-            <p><strong>BiG FlooW</strong> est une marque déposée par <strong>M. Victor HALLO</strong>.</p>
+            <p><strong>BiG FlooW</strong> est une marque exploitée par <strong>M. Victor HALLO</strong>.</p>
             
             <h2>Éditeur du site</h2>
             <p><strong>Nom :</strong> Victor HALLO<br>
@@ -103,7 +117,7 @@
             <strong>Téléphone :</strong> +228 90 49 86 80 / +228 97 16 08 73</p>
 
             <h2>Hébergement</h2>
-            <p>Ce site est hébergé par GitHub Pages (ou tout autre hébergeur selon configuration).<br>
+            <p>Ce site est hébergé par GitHub Pages (ou tout autre service selon configuration).<br>
             Adresse : GitHub, Inc. · 88 Colin P Kelly Jr St · San Francisco, CA 94107 · États-Unis.</p>
 
             <h2>Propriété intellectuelle</h2>
@@ -112,8 +126,24 @@
             <h2>Responsabilité</h2>
             <p>BiG FlooW s’efforce de fournir des informations exactes et actualisées, mais ne peut garantir l’exhaustivité. L’utilisation des services se fait sous votre propre responsabilité.</p>
 
+            <h2>Protection des données personnelles</h2>
+            <p>Conformément à la loi informatique et libertés, vous disposez d’un droit d’accès, de rectification et de suppression de vos données. Pour l’exercer, contactez-nous à <a href="mailto:bigfloow0@gmail.com">bigfloow0@gmail.com</a>.</p>
+            <p>Nous ne collectons que les données strictement nécessaires à la gestion de vos demandes (nom, email, téléphone, budget éventuel). Ces données ne sont jamais cédées à des tiers.</p>
+
+            <h2>Cookies</h2>
+            <p>Ce site utilise un unique cookie technique pour mémoriser votre acceptation de la bannière cookies. Aucun cookie de traçage ou publicitaire n’est déposé sans consentement explicite.</p>
+
+            <h2>Conditions générales d’utilisation (CGU)</h2>
+            <p>L’accès et l’utilisation du site BiG FlooW impliquent l’acceptation pleine et entière des présentes CGU. Nous nous réservons le droit de modifier ces conditions à tout moment.</p>
+            <h3>1. Contenu du site</h3>
+            <p>Les informations présentées sont données à titre indicatif. BiG FlooW ne saurait être tenu responsable des erreurs ou omissions.</p>
+            <h3>2. Liens hypertextes</h3>
+            <p>Le site peut contenir des liens vers des sites externes. BiG FlooW n’exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.</p>
+            <h3>3. Litiges</h3>
+            <p>Les présentes conditions sont régies par le droit togolais. En cas de litige, une solution amiable sera recherchée avant toute action judiciaire.</p>
+
             <h2>Droit applicable</h2>
-            <p>Les présentes mentions sont régies par le droit togolais.</p>
+            <p>Les présentes mentions sont régies par le droit togolais. La langue de référence est le français.</p>
 
             <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
         </div>
