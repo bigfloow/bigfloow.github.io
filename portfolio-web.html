@@ -428,6 +428,41 @@
         .web-hero-stats { gap: 25px; }
         .web-hero-stat strong { font-size: 1.5rem; }
     }
+
+    /* ===== DARK MODE — portfolio-web.html ===== */
+    body.dark-theme { background: #121212; color: #e0e0e0; }
+
+    body.dark-theme .why-section { background: #1a1a1a; }
+    body.dark-theme .why-card { background: #1e1e1e; border-color: #2a2a2a; }
+    body.dark-theme .why-card h3 { color: #fff !important; }
+    body.dark-theme .why-card p { color: #ccc !important; }
+    body.dark-theme .why-card:hover { border-color: var(--accent-blue); }
+
+    body.dark-theme .gallery-section { background: #1a1a1a; }
+    body.dark-theme .filter-btn { background: #1e1e1e; border-color: #333; color: #aaa; }
+    body.dark-theme .filter-btn.active,
+    body.dark-theme .filter-btn:hover { background: var(--accent-blue); color: white; border-color: var(--accent-blue); }
+    body.dark-theme .mockup-card { background: #1e1e1e; border-color: #2a2a2a; }
+    body.dark-theme .mockup-name { color: #fff; }
+    body.dark-theme .mockup-desc { color: #aaa; }
+
+    body.dark-theme .process-section { background: #141414; }
+    body.dark-theme .step-number { background: #1e1e1e; color: var(--accent-blue); }
+    body.dark-theme .process-step h4 { color: #fff !important; }
+    body.dark-theme .process-step p { color: #aaa !important; }
+
+    body.dark-theme .section-title { color: #fff !important; }
+    body.dark-theme h2, body.dark-theme h3, body.dark-theme h4 { color: #fff !important; }
+    body.dark-theme p { color: #ccc; }
+
+    body.dark-theme .navbar { background: rgba(18,18,18,0.97) !important; border-bottom: 1px solid #222; }
+    body.dark-theme .nav-links a { color: #fff !important; }
+    body.dark-theme .brand { color: #fff !important; }
+
+    body.dark-theme .footer-col p { color: #999 !important; }
+
+    /* Lien retour accueil en dark */
+    body.dark-theme .why-icon { background: rgba(0,127,255,0.12); }
     </style>
 </head>
 <body>
@@ -454,6 +489,7 @@
 <nav class="navbar">
     <div class="brand">BiG <span class="floo">Floo</span><span class="w">W</span></div>
     <ul class="nav-links">
+        <li><button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button></li>
         <li><a href="index.html">Accueil</a></li>
         <li><a href="portfolio.html">Graphisme</a></li>
         <li><a href="portfolio-3d.html">3D</a></li>
@@ -476,7 +512,15 @@
         </div>
         <h1>Votre site web,<br>conçu par des <span>designers</span></h1>
         <p>Nous ne faisons pas que coder — nous créons des expériences visuelles qui convertissent vos visiteurs en clients. Design graphique professionnel + développement web = résultats garantis.</p>
-        
+        <div class="web-hero-btns">
+            <a href="https://wa.me/22890498680?text=Bonjour%20BiG%20FlooW%2C%20je%20veux%20un%20site%20web%20professionnel." class="btn-hero-primary" target="_blank">
+                <i class="fab fa-whatsapp"></i> Démarrer mon projet
+            </a>
+            <a href="#galerie-web" class="btn-hero-secondary">
+                <i class="fas fa-eye"></i> Voir nos réalisations
+            </a>
+        </div>
+
         <div class="web-hero-stats">
             <div class="web-hero-stat">
                 <strong>12+</strong>
@@ -1140,8 +1184,40 @@ function toggleChatbot() {
 // Chatbase script (chargé normalement mais widget caché par défaut)
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="lamcS_rk7GxldSZ8_1qHN";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 
-@keyframes fadeIn { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
 </script>
+<style>@keyframes fadeIn { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }</style>
 
+
+<script>
+// ===== DARK MODE — Theme Toggle =====
+(function() {
+    const btn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    function updateIcon(isDark) {
+        if (!btn) return;
+        const icon = btn.querySelector('i');
+        if (!icon) return;
+        if (isDark) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+        else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+    }
+
+    function applyTheme(isDark) {
+        body.classList.toggle('dark-theme', isDark);
+        updateIcon(isDark);
+        localStorage.setItem('bigfloow-theme', isDark ? 'dark' : 'light');
+    }
+
+    // Load saved theme on page start
+    const saved = localStorage.getItem('bigfloow-theme');
+    if (saved === 'dark') applyTheme(true);
+    else if (saved === 'light') applyTheme(false);
+    else applyTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    if (btn) {
+        btn.addEventListener('click', () => applyTheme(!body.classList.contains('dark-theme')));
+    }
+})();
+</script>
 </body>
 </html>
