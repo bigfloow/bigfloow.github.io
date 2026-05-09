@@ -235,7 +235,7 @@
                     <li><a href="mailto:bigfloow0@gmail.com"><i class="fas fa-envelope"></i> bigfloow0@gmail.com</a></li>
                     <li><i class="fas fa-map-marker-alt"></i> Bd de la Kara, Lomé</li>
                     <li><a href="https://wa.me/22890498680" target="_blank" class="footer-whatsapp-btn"><i class="fab fa-whatsapp"></i> Écrire sur WhatsApp</a></li>
-                    <li><button onclick="toggleChatbot()" class="footer-help-btn"><i class="fas fa-robot"></i> Besoin d'aide ?</button></li>
+                    <li><button onclick="toggleChatbot()" class="footer-help-btn"><i class="fas fa-robot"></i> Besoin d'aide supplémentaire ?</button></li>
                 </ul>
             </div>
             <div class="footer-col footer-col--devis">
@@ -351,10 +351,36 @@ function subscribeNewsletter() {
     window.open(`https://wa.me/22890498680?text=${encodeURIComponent('Bonjour, je souhaite m\'inscrire à la newsletter avec : '+email)}`, '_blank');
     document.getElementById('newsletter-email').value = '';
 }
-function toggleChatbot() { if(window.chatbase) window.chatbase('open'); else setTimeout(toggleChatbot, 500); }
 
-window.chatbaseConfig = { chatbotId: "lamcS_rk7GxldSZ8_1qHN", defaultOpen: false, hideButton: true };
-(function(){ if(!window.chatbase||window.chatbase("getState")!=="initialized"){ window.chatbase=(...a)=>{if(!window.chatbase.q)window.chatbase.q=[];window.chatbase.q.push(a)}; window.chatbase=new Proxy(window.chatbase,{get(t,p){if(p==="q")return t.q;return(...a)=>t(p,...a)}}); } const s=document.createElement("script"); s.src="https://www.chatbase.co/embed.min.js"; s.id="lamcS_rk7GxldSZ8_1qHN"; s.domain="www.chatbase.co"; document.body.appendChild(s); })();
+// Chatbot : chargé uniquement au clic et affiché
+let chatbaseLoaded = false;
+function toggleChatbot() {
+    if(!chatbaseLoaded) {
+        // Charger le script Chatbase seulement au premier clic
+        const script = document.createElement('script');
+        script.src = "https://www.chatbase.co/embed.min.js";
+        script.id = "lamcS_rk7GxldSZ8_1qHN";
+        script.domain = "www.chatbase.co";
+        script.onload = () => {
+            // Une fois chargé, forcer l'ouverture
+            if(window.chatbase) {
+                window.chatbase('show'); // s'assure que le widget est visible
+                window.chatbase('open');
+            }
+        };
+        document.body.appendChild(script);
+        chatbaseLoaded = true;
+        
+        // Définir la configuration (masqué par défaut)
+        window.chatbaseConfig = { chatbotId: "lamcS_rk7GxldSZ8_1qHN", defaultOpen: false, hideButton: true };
+    } else {
+        // Déjà chargé : ouvrir
+        if(window.chatbase) {
+            window.chatbase('show');
+            window.chatbase('open');
+        }
+    }
+}
 </script>
 </body>
 </html>
