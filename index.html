@@ -296,12 +296,28 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // === GESTION DU THEME (clair/sombre) ===
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
-    function updateIcon(isDark) { if(themeToggle) { const icon = themeToggle.querySelector('i'); if(icon) isDark ? icon.classList.replace('fa-moon','fa-sun') : icon.classList.replace('fa-sun','fa-moon'); } }
-    if(localStorage.getItem('bigfloow-theme') === 'dark') { body.classList.add('dark-theme'); updateIcon(true); }
-    if(themeToggle) themeToggle.addEventListener('click', () => { body.classList.toggle('dark-theme'); localStorage.setItem('bigfloow-theme', body.classList.contains('dark-theme') ? 'dark' : 'light'); updateIcon(body.classList.contains('dark-theme')); });
+    function updateIcon(isDark) { 
+        if(themeToggle) { 
+            const icon = themeToggle.querySelector('i'); 
+            if(icon) isDark ? icon.classList.replace('fa-moon','fa-sun') : icon.classList.replace('fa-sun','fa-moon'); 
+        } 
+    }
+    if(localStorage.getItem('bigfloow-theme') === 'dark') { 
+        body.classList.add('dark-theme'); 
+        updateIcon(true); 
+    }
+    if(themeToggle) {
+        themeToggle.addEventListener('click', () => { 
+            body.classList.toggle('dark-theme'); 
+            localStorage.setItem('bigfloow-theme', body.classList.contains('dark-theme') ? 'dark' : 'light'); 
+            updateIcon(body.classList.contains('dark-theme')); 
+        });
+    }
     
+    // === STATISTIQUES (compteurs) ===
     const stats = document.querySelectorAll('.stat-number');
     if(stats.length) {
         const observer = new IntersectionObserver((entries) => {
@@ -309,31 +325,77 @@ document.addEventListener('DOMContentLoaded', function() {
                 if(entry.isIntersecting) {
                     const target = +entry.target.getAttribute('data-target');
                     let count = 0;
-                    const updateCount = () => { count += target/50; if(count < target) { entry.target.innerText = Math.ceil(count)+"+"; requestAnimationFrame(updateCount); } else entry.target.innerText = target+"+"; };
-                    updateCount(); observer.unobserve(entry.target);
+                    const updateCount = () => { 
+                        count += target/50; 
+                        if(count < target) { 
+                            entry.target.innerText = Math.ceil(count)+"+"; 
+                            requestAnimationFrame(updateCount); 
+                        } else { 
+                            entry.target.innerText = target+"+"; 
+                        } 
+                    };
+                    updateCount(); 
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.5 });
         stats.forEach(s => observer.observe(s));
     }
     
-    const banner = document.getElementById('cookie-banner');
-    const acceptBtn = document.getElementById('accept-cookie');
-    if(!localStorage.getItem('bigfloow_cookies')) banner.style.display = 'block';
-    if(acceptBtn) acceptBtn.addEventListener('click', () => { localStorage.setItem('bigfloow_cookies', 'true'); banner.style.display = 'none'; });
+    // === GESTION DES COOKIES (CORRIGÉE) ===
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptCookieBtn = document.getElementById('accept-cookie');
     
+    // Fonction pour masquer définitivement la bannière
+    function hideCookieBanner() {
+        if (cookieBanner) cookieBanner.style.display = 'none';
+    }
+    
+    // Vérifier si le consentement a déjà été donné
+    const cookiesAccepted = localStorage.getItem('bigfloow_cookies');
+    if (!cookiesAccepted) {
+        // Afficher la bannière
+        if (cookieBanner) cookieBanner.style.display = 'block';
+    } else {
+        hideCookieBanner();
+    }
+    
+    // Écouter le clic sur "Accepter"
+    if (acceptCookieBtn) {
+        acceptCookieBtn.addEventListener('click', function() {
+            localStorage.setItem('bigfloow_cookies', 'true');
+            hideCookieBanner();
+        });
+    }
+    
+    // === LIGHTBOX (agrandissement images) ===
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.getElementById('lightbox-caption');
-    const closeLightbox = () => { lightbox.classList.remove('active'); document.body.style.overflow = 'auto'; };
+    const closeLightbox = () => { 
+        if (lightbox) lightbox.classList.remove('active'); 
+        document.body.style.overflow = 'auto'; 
+    };
+    
     document.querySelectorAll('.story-logo-img, .mini-logo').forEach(img => {
         img.style.cursor = 'zoom-in';
-        img.addEventListener('click', () => { lightbox.classList.add('active'); lightboxImg.src = img.src; lightboxCaption.innerText = img.alt || "Création BiG FlooW"; document.body.style.overflow = 'hidden'; });
+        img.addEventListener('click', () => { 
+            lightbox.classList.add('active'); 
+            lightboxImg.src = img.src; 
+            lightboxCaption.innerText = img.alt || "Création BiG FlooW"; 
+            document.body.style.overflow = 'hidden'; 
+        });
     });
-    if(lightbox) lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+    
+    if(lightbox) {
+        lightbox.addEventListener('click', (e) => { 
+            if(e.target === lightbox) closeLightbox(); 
+        });
+    }
     document.querySelector('.lightbox-close')?.addEventListener('click', closeLightbox);
 });
 
+// === FONCTIONS UTILES POUR DEVIS ET NEWSLETTER ===
 function sendFooterDevis(e) {
     e.preventDefault();
     const name = document.getElementById('devis-name').value.trim();
@@ -343,13 +405,18 @@ function sendFooterDevis(e) {
     const msg = `Bonjour BiG FlooW 👋\n\nJe souhaite un devis pour :\n- Nom : ${name}\n- Service : ${service}${budget ? '\n- Budget estimé : ' + budget + ' FCFA' : ''}\n\nMerci !`;
     window.open(`https://wa.me/22890498680?text=${encodeURIComponent(msg)}`, '_blank');
 }
+
 function subscribeNewsletter() {
     const email = document.getElementById('newsletter-email').value.trim();
-    if(!email || !email.includes('@')) { alert('Veuillez entrer une adresse email valide.'); return; }
+    if(!email || !email.includes('@')) { 
+        alert('Veuillez entrer une adresse email valide.'); 
+        return; 
+    }
     window.open(`https://wa.me/22890498680?text=${encodeURIComponent('Bonjour, je souhaite m\'inscrire à la newsletter avec : '+email)}`, '_blank');
     document.getElementById('newsletter-email').value = '';
 }
 
+// === CHATBOT (chargement au clic seulement) ===
 let chatbaseLoaded = false;
 function toggleChatbot() {
     if(!chatbaseLoaded) {
