@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.showToast = showToast;
 
     // ---------- NEWSLETTER ----------
-  function subscribeNewsletter() {
+ function subscribeNewsletter() {
     const email = document.getElementById('newsletter-email').value.trim();
     
     if(!email || !email.includes('@')) { 
@@ -121,32 +121,31 @@ document.addEventListener('DOMContentLoaded', function() {
         return; 
     }
     
-    // Afficher un message de chargement
+    // Désactiver le bouton pendant l'envoi
     const btn = document.querySelector('.newsletter-btn');
     const originalText = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> En cours...';
     btn.disabled = true;
     
-    // Envoyer au serveur PHP
-    fetch('newsletter.php', {
+    // Envoyer à Formspree
+    fetch('https://formspree.io/f/mnjrjqaa', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email: email })
     })
-    .then(response => response.json())
-    .then(data => {
-        if(data.success) {
-            showToast('✅ ' + data.message, 'success');
+    .then(response => {
+        if(response.ok) {
+            showToast('✅ Merci de votre abonnement 😊 Vous serez informé de nos prochaines actualités !', 'success');
             document.getElementById('newsletter-email').value = '';
         } else {
-            showToast('⚠️ ' + data.message, 'warning');
+            showToast('❌ Une erreur est survenue. Réessayez plus tard.', 'error');
         }
     })
     .catch(error => {
         console.error('Erreur:', error);
-        showToast('❌ Une erreur est survenue. Réessayez plus tard.', 'error');
+        showToast('❌ Erreur réseau. Vérifiez votre connexion.', 'error');
     })
     .finally(() => {
         btn.innerHTML = originalText;
@@ -154,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 }
 
-// Fonction pour afficher une notification toast (design pro)
+// === FONCTION POUR AFFICHER LES NOTIFICATIONS (à ajouter aussi) ===
 function showToast(message, type = 'success') {
     // Supprimer les anciens toasts
     const existingToast = document.querySelector('.toast-notification');
@@ -195,14 +194,6 @@ function showToast(message, type = 'success') {
     closeBtn.addEventListener('click', () => {
         clearTimeout(timeout);
         closeToast(toast);
-    });
-    
-    // Fermeture au clic sur le toast
-    toast.addEventListener('click', (e) => {
-        if(e.target === toast) {
-            clearTimeout(timeout);
-            closeToast(toast);
-        }
     });
 }
 
