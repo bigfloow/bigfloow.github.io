@@ -850,7 +850,6 @@ button:hover {
     100% { width: 0%; }
 }
 
-/* Couleurs selon le type */
 .toast-success {
     background: linear-gradient(135deg, #1a472a, #0d2818);
     border-left: 4px solid #25d366;
@@ -866,7 +865,6 @@ button:hover {
     border-left: 4px solid var(--accent-orange);
 }
 
-/* Responsive */
 @media (max-width: 576px) {
     .toast-notification {
         bottom: 20px;
@@ -886,7 +884,6 @@ button:hover {
     }
 }
 
-/* Version dark theme déjà compatible */
 body.dark-theme .toast-notification {
     background: rgba(30,30,30,0.95);
 }
