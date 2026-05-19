@@ -777,3 +777,116 @@ button:hover {
   background: #2563eb;
 }
 </style>
+
+/* =========================================
+   TOAST NOTIFICATION (NEWSLETTER)
+   ========================================= */
+.toast-notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    max-width: 380px;
+    width: calc(100% - 40px);
+    background: #1e1e1e;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    overflow: hidden;
+    transform: translateX(400px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 10001;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.toast-notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    position: relative;
+}
+
+.toast-icon {
+    font-size: 1.8rem;
+}
+
+.toast-message {
+    flex: 1;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #fff;
+    font-weight: 500;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 5px;
+    transition: 0.2s;
+}
+
+.toast-close:hover {
+    color: white;
+}
+
+.toast-progress {
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-orange), var(--accent-blue));
+    width: 100%;
+    animation: toastProgress 5s linear forwards;
+}
+
+@keyframes toastProgress {
+    0% { width: 100%; }
+    100% { width: 0%; }
+}
+
+/* Couleurs selon le type */
+.toast-success {
+    background: linear-gradient(135deg, #1a472a, #0d2818);
+    border-left: 4px solid #25d366;
+}
+
+.toast-error {
+    background: linear-gradient(135deg, #4a1a1a, #2a0a0a);
+    border-left: 4px solid #ff4444;
+}
+
+.toast-warning {
+    background: linear-gradient(135deg, #4a3a1a, #2a200a);
+    border-left: 4px solid var(--accent-orange);
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .toast-notification {
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        max-width: none;
+        width: auto;
+    }
+    .toast-content {
+        padding: 12px 16px;
+    }
+    .toast-icon {
+        font-size: 1.4rem;
+    }
+    .toast-message {
+        font-size: 0.8rem;
+    }
+}
+
+/* Version dark theme déjà compatible */
+body.dark-theme .toast-notification {
+    background: rgba(30,30,30,0.95);
+}
