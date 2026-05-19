@@ -113,16 +113,105 @@ document.addEventListener('DOMContentLoaded', function() {
     window.showToast = showToast;
 
     // ---------- NEWSLETTER ----------
-    window.subscribeNewsletter = function() {
-        const email = document.getElementById('newsletter-email');
-        if (email && email.value.trim() && email.value.includes('@')) {
-            window.open(`https://wa.me/22890498680?text=${encodeURIComponent('Newsletter : ' + email.value.trim())}`, '_blank');
-            email.value = '';
-            showToast('Demande d\'inscription envoyée !');
+  function subscribeNewsletter() {
+    const email = document.getElementById('newsletter-email').value.trim();
+    
+    if(!email || !email.includes('@')) { 
+        showToast('❌ Veuillez entrer une adresse email valide.', 'error');
+        return; 
+    }
+    
+    // Afficher un message de chargement
+    const btn = document.querySelector('.newsletter-btn');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> En cours...';
+    btn.disabled = true;
+    
+    // Envoyer au serveur PHP
+    fetch('newsletter.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.success) {
+            showToast('✅ ' + data.message, 'success');
+            document.getElementById('newsletter-email').value = '';
         } else {
-            showToast('Email invalide', false);
+            showToast('⚠️ ' + data.message, 'warning');
         }
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+        showToast('❌ Une erreur est survenue. Réessayez plus tard.', 'error');
+    })
+    .finally(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    });
+}
+
+// Fonction pour afficher une notification toast (design pro)
+function showToast(message, type = 'success') {
+    // Supprimer les anciens toasts
+    const existingToast = document.querySelector('.toast-notification');
+    if(existingToast) existingToast.remove();
+    
+    // Créer le toast
+    const toast = document.createElement('div');
+    toast.className = `toast-notification toast-${type}`;
+    
+    // Icônes selon le type
+    const icons = {
+        success: '😊',
+        error: '❌',
+        warning: '⚠️'
     };
+    
+    toast.innerHTML = `
+        <div class="toast-content">
+            <span class="toast-icon">${icons[type] || 'ℹ️'}</span>
+            <span class="toast-message">${message}</span>
+            <button class="toast-close">&times;</button>
+        </div>
+        <div class="toast-progress"></div>
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Animation d'entrée
+    setTimeout(() => toast.classList.add('show'), 10);
+    
+    // Fermeture automatique après 5 secondes
+    const timeout = setTimeout(() => {
+        closeToast(toast);
+    }, 5000);
+    
+    // Bouton de fermeture
+    const closeBtn = toast.querySelector('.toast-close');
+    closeBtn.addEventListener('click', () => {
+        clearTimeout(timeout);
+        closeToast(toast);
+    });
+    
+    // Fermeture au clic sur le toast
+    toast.addEventListener('click', (e) => {
+        if(e.target === toast) {
+            clearTimeout(timeout);
+            closeToast(toast);
+        }
+    });
+}
+
+function closeToast(toast) {
+    toast.classList.remove('show');
+    setTimeout(() => {
+        if(toast.parentNode) toast.remove();
+    }, 300);
+}
 
     // ---------- DEVIS ----------
     window.sendFooterDevis = function(e) {
