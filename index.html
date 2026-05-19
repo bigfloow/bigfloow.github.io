@@ -266,13 +266,10 @@
             <i class="fas fa-bell"></i>
             <span>Restez informé de nos dernières créations</span>
         </div>
-        <div class="footer-newsletter-form">
-    <form action="https://formspree.io/f/mnjrjqaa" method="POST" id="newsletter-form">
-        <input type="email" name="email" placeholder="Votre adresse email" required>
-        <button type="submit" class="newsletter-btn">S'inscrire</button>
-    </form>
-    <div id="newsletter-message" style="display:none; margin-top:10px; padding:8px; border-radius:8px; font-size:0.8rem;"></div>
-</div>
+         <div class="footer-newsletter-form">
+            <input type="email" id="newsletter-email" placeholder="Votre adresse email" required>
+            <button onclick="subscribeNewsletter()" class="newsletter-btn">S'inscrire</button>
+        </div> <!-- fermeture correcte de footer-newsletter-form -->
         <div class="footer-bottom-links">
             <a href="mentions-legales.html" class="legal-btn"><i class="fas fa-gavel"></i> Mentions légales</a>
             <a href="politique-confidentialite.html" class="legal-btn"><i class="fas fa-shield-alt"></i> Confidentialité</a>
