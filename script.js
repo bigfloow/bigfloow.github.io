@@ -352,3 +352,26 @@ function closeToast(toast) {
 
     // ---------- (Suppression du skeleton loader – plus d’opacité forcée) ----------
 });
+
+// === GESTION DU MENU DÉROULANT "SERVICES" (mobile + desktop) ===
+const dropdown = document.querySelector('.dropdown');
+const toggle = document.getElementById('servicesToggle');
+
+if (dropdown && toggle) {
+    // Pour mobile : toggle au clic
+    toggle.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            dropdown.classList.toggle('open');
+        }
+    });
+
+    // Fermer le menu si on clique ailleurs (mobile)
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('open');
+            }
+        }
+    });
+}
