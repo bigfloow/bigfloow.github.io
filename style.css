@@ -887,3 +887,147 @@ button:hover {
 body.dark-theme .toast-notification {
     background: rgba(30,30,30,0.95);
 }
+
+/* =========================================
+   MENU DÉROULANT "SERVICES"
+   ========================================= */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dropdown-toggle i {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-toggle i {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 12px 0;
+    min-width: 220px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    list-style: none;
+    z-index: 1001;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    color: var(--logo-black);
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.dropdown-menu a i {
+    width: 20px;
+    color: var(--accent-blue);
+    font-size: 0.9rem;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(0,127,255,0.08);
+    padding-left: 25px;
+    color: var(--accent-blue);
+}
+
+/* Version dark theme */
+body.dark-theme .dropdown-menu {
+    background: rgba(30,30,30,0.98);
+    border-color: #333;
+}
+
+body.dark-theme .dropdown-menu a {
+    color: #fff;
+}
+
+body.dark-theme .dropdown-menu a i {
+    color: var(--accent-orange);
+}
+
+body.dark-theme .dropdown-menu a:hover {
+    background: rgba(0,127,255,0.2);
+    color: var(--accent-blue);
+}
+
+/* Responsive mobile : menu déroulant cliquable (pas de hover) */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        position: static;
+        background: transparent;
+        backdrop-filter: none;
+        box-shadow: none;
+        opacity: 1;
+        visibility: hidden;
+        transform: none;
+        padding-left: 20px;
+        margin-top: 5px;
+        display: none;
+        border: none;
+    }
+    
+    .dropdown.active .dropdown-menu {
+        display: block;
+        visibility: visible;
+    }
+    
+    .dropdown-menu a {
+        padding: 8px 15px;
+        font-size: 0.8rem;
+    }
+    
+    .dropdown-toggle i {
+        transition: transform 0.2s;
+    }
+    
+    .dropdown.active .dropdown-toggle i {
+        transform: rotate(180deg);
+    }
+}
+
+/* Ajustement pour les petits écrans où la navbar est en colonne */
+@media (max-width: 680px) {
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        background: transparent;
+        backdrop-filter: none;
+        box-shadow: none;
+        padding-left: 20px;
+    }
+    
+    .dropdown-menu a {
+        justify-content: flex-start;
+    }
+}
