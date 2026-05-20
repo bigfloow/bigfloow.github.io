@@ -83,7 +83,7 @@ body {
 .navbar, header, main, footer, .cookie-box, .lightbox { position: relative; z-index: 1; }
 
 /* =========================================
-   NAVBAR RESPONSIVE
+   NAVBAR RESPONSIVE AVEC ESPACEMENT
    ========================================= */
 .navbar {
     display: flex;
@@ -101,7 +101,7 @@ body {
 .brand { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--logo-black); }
 .brand .floo { color: var(--accent-orange); }
 .brand .w { color: var(--accent-blue); }
-.nav-links { list-style: none; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.nav-links { list-style: none; display: flex; align-items: center; flex-wrap: wrap; gap: 25px; } /* ESPACEMENT AUGMENTÉ */
 .nav-links li { margin-left: 0; }
 .nav-links a { text-decoration: none; color: var(--logo-black); font-weight: 500; font-size: 0.85rem; transition: var(--transition); white-space: nowrap; }
 .nav-links a:hover { color: var(--accent-blue); }
@@ -119,7 +119,7 @@ body {
 .theme-btn { background: none; border: none; cursor: pointer; font-size: 1rem; color: var(--dark-grey); padding: 6px; }
 @media (max-width: 680px) {
     .navbar { flex-direction: column; gap: 8px; padding: 10px 4%; }
-    .nav-links { justify-content: center; }
+    .nav-links { justify-content: center; gap: 15px; }
     .nav-links a { font-size: 0.7rem; }
     .btn-contact { padding: 4px 10px; font-size: 0.7rem; }
 }
@@ -432,7 +432,7 @@ body {
 .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
 
 /* =========================================
-   DARK THEME - FOND NOIR, TEXTES BLANCS
+   DARK THEME
    ========================================= */
 body.dark-theme {
     background-color: #121212;
@@ -456,7 +456,6 @@ body.dark-theme .brand,
 body.dark-theme .nav-links a {
     color: #ffffff;
 }
-/* Partie "Notre histoire" fond noir */
 body.dark-theme .story-part {
     background: #0a0a0a;
 }
@@ -477,7 +476,6 @@ body.dark-theme .founder-badge {
 body.dark-theme .story-logo-img {
     filter: grayscale(100%) brightness(1.2);
 }
-/* Les textes en gras deviennent bleus en mode sombre (touche bleue) */
 body.dark-theme .story-block p strong,
 body.dark-theme .story-block--light p strong,
 body.dark-theme p strong {
@@ -515,7 +513,6 @@ body.dark-theme .founder-info h3 {
 .whatsapp-float { display: none !important; }
 img { max-width: 100%; height: auto; display: block; }
 
-/* Ajustement des marges pour grands écrans */
 @media (min-width: 1600px) {
     .container {
         max-width: 1600px;
@@ -565,22 +562,17 @@ body.dark-theme .legal-btn:hover {
 /* =========================================
    AMÉLIORATIONS GRAPHIQUES & SURVOLS
    ========================================= */
-
-/* 1. Effets de survol plus professionnels sur les textes (liens, titres, etc.) */
 a, .footer-col a, .legal-btn, .btn-contact, .expertise-card h3, .story-block h3, .founder-info h3 {
     transition: all 0.3s ease;
 }
-/* Liens du footer et navigation */
 .footer-col a:hover, .nav-links a:hover, .legal-btn:hover {
     letter-spacing: 0.5px;
     text-shadow: 0 0 2px rgba(255,255,255,0.5);
 }
-/* Titres des cartes d'expertise au survol */
 .expertise-card:hover h3 {
     color: var(--accent-orange);
     transform: translateX(5px);
 }
-/* Ligne sous le titre au survol déjà existante, on améliore */
 .card-line {
     transition: width 0.4s ease, background 0.3s ease;
 }
@@ -588,7 +580,6 @@ a, .footer-col a, .legal-btn, .btn-contact, .expertise-card h3, .story-block h3,
     width: 70px;
     background: var(--accent-orange);
 }
-/* Boutons "Contact" et devis */
 .btn-contact:hover, .footer-devis-btn:hover, .newsletter-btn:hover, .footer-help-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
@@ -601,8 +592,6 @@ a, .footer-col a, .legal-btn, .btn-contact, .expertise-card h3, .story-block h3,
     background: #005fcc;
     box-shadow: 0 8px 20px rgba(0,127,255,0.3);
 }
-
-/* 2. Correction : survol des logos (retrouver leurs couleurs d'origine) */
 .story-logo-img {
     filter: grayscale(100%);
     opacity: 0.8;
@@ -613,7 +602,6 @@ a, .footer-col a, .legal-btn, .btn-contact, .expertise-card h3, .story-block h3,
     opacity: 1;
     transform: scale(1.05);
 }
-/* Pour le logo Dav déjà rond, on conserve */
 .dav-round-logo, .big-round-logo {
     transition: all 0.4s ease;
 }
@@ -622,8 +610,6 @@ a, .footer-col a, .legal-btn, .btn-contact, .expertise-card h3, .story-block h3,
     opacity: 1;
     transform: scale(1.05) rotate(2deg);
 }
-
-/* 3. Icônes réseaux sociaux dans le footer : couleurs officielles au survol */
 .social-icon {
     transition: all 0.3s ease;
     background: #1a1a1a;
@@ -660,18 +646,14 @@ a, .footer-col a, .legal-btn, .btn-contact, .expertise-card h3, .story-block h3,
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0,119,181,0.3);
 }
-/* Pour tous, l'icône devient blanche sur fond coloré */
 .social-icon:hover i {
     color: white;
 }
-
-/* 4. Footer plus design : dégradé subtil, bordures améliorées, ombres */
 .main-footer {
     background: linear-gradient(135deg, #050505 0%, #0a0a0a 50%, #0f0f0f 100%);
     position: relative;
     border-top: 1px solid rgba(237,127,16,0.2);
 }
-/* Ajout d'une "lumière" en haut du footer */
 .main-footer::before {
     content: '';
     position: absolute;
@@ -681,7 +663,6 @@ a, .footer-col a, .legal-btn, .btn-contact, .expertise-card h3, .story-block h3,
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--accent-orange), var(--accent-blue), transparent);
 }
-/* Cartes dans le footer (devis, newsletter) avec bordure subtile */
 .footer-devis-form input, .footer-devis-form select {
     background: rgba(20,20,20,0.9);
     border: 1px solid rgba(255,255,255,0.15);
@@ -702,7 +683,6 @@ a, .footer-col a, .legal-btn, .btn-contact, .expertise-card h3, .story-block h3,
 .footer-newsletter-inner {
     background: transparent;
 }
-/* Boutons légaux (Mentions / Confidentialité) avec animation */
 .legal-btn {
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(8px);
@@ -720,13 +700,11 @@ body.dark-theme .legal-btn:hover {
     border-color: var(--accent-blue);
     box-shadow: 0 5px 15px rgba(0,127,255,0.4);
 }
-/* Ligne décorative du footer */
 .line-gradient {
     height: 4px;
     background: linear-gradient(90deg, #000 0%, #ED7F10 35%, #007FFF 70%, #000 100%);
     margin: 20px 0 0;
 }
-/* Badge qualité amélioré */
 .footer-quality-badge {
     background: rgba(0,0,0,0.6);
     backdrop-filter: blur(4px);
@@ -737,7 +715,6 @@ body.dark-theme .legal-btn:hover {
     border-color: var(--accent-orange);
     transform: scale(1.02);
 }
-/* Effet sur les liens de navigation du footer */
 .footer-col ul li a {
     display: inline-block;
     transition: transform 0.2s, color 0.2s;
@@ -751,7 +728,7 @@ body.dark-theme .footer-col ul li a:hover {
 }
 
 /* =========================================
-   TOAST NOTIFICATION (NEWSLETTER)
+   TOAST NOTIFICATION
    ========================================= */
 .toast-notification {
     position: fixed;
@@ -848,30 +825,24 @@ body.dark-theme .toast-notification {
 }
 
 /* =========================================
-   MENU DÉROULANT "SERVICES" - DESIGN MODERNE
+   MENU DÉROULANT "SERVICES"
    ========================================= */
 .dropdown {
     position: relative;
 }
-
 .dropdown-toggle {
     display: flex;
     align-items: center;
     gap: 6px;
     cursor: pointer;
 }
-
 .dropdown-toggle i {
     font-size: 0.7rem;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-/* Flèche qui tourne quand ouvert */
 .dropdown.open .dropdown-toggle i {
     transform: rotate(180deg);
 }
-
-/* Menu déroulant */
 .dropdown-menu {
     position: absolute;
     top: calc(100% + 10px);
@@ -890,8 +861,6 @@ body.dark-theme .toast-notification {
     border: 1px solid rgba(0,0,0,0.05);
     backdrop-filter: blur(2px);
 }
-
-/* Version desktop : hover */
 @media (min-width: 769px) {
     .dropdown:hover .dropdown-menu {
         opacity: 1;
@@ -899,11 +868,9 @@ body.dark-theme .toast-notification {
         transform: translateY(0);
     }
 }
-
 .dropdown-menu li {
     margin: 0;
 }
-
 .dropdown-menu a {
     display: flex;
     align-items: center;
@@ -916,52 +883,41 @@ body.dark-theme .toast-notification {
     white-space: nowrap;
     border-left: 3px solid transparent;
 }
-
 .dropdown-menu a i {
     width: 24px;
     color: var(--accent-blue);
     font-size: 1rem;
     transition: transform 0.2s;
 }
-
 .dropdown-menu a:hover {
     background: rgba(0,127,255,0.06);
     border-left-color: var(--accent-orange);
     padding-left: 28px;
     color: var(--accent-blue);
 }
-
 .dropdown-menu a:hover i {
     transform: translateX(3px);
     color: var(--accent-orange);
 }
-
-/* Version dark theme */
 body.dark-theme .dropdown-menu {
     background: #1e1e1e;
     box-shadow: 0 20px 35px -10px rgba(0,0,0,0.5);
     border-color: #333;
 }
-
 body.dark-theme .dropdown-menu a {
     color: #e0e0e0;
 }
-
 body.dark-theme .dropdown-menu a i {
     color: var(--accent-orange);
 }
-
 body.dark-theme .dropdown-menu a:hover {
     background: rgba(0,127,255,0.15);
     border-left-color: var(--accent-blue);
     color: white;
 }
-
 body.dark-theme .dropdown-menu a:hover i {
     color: var(--accent-blue);
 }
-
-/* ========== MOBILE : clic pour ouvrir/fermer ========== */
 @media (max-width: 768px) {
     .dropdown-menu {
         position: static;
@@ -978,25 +934,20 @@ body.dark-theme .dropdown-menu a:hover i {
         transform: none;
         transition: none;
     }
-
     .dropdown.open .dropdown-menu {
         display: block;
     }
-
     .dropdown-menu a {
         padding: 10px 15px;
         font-size: 0.85rem;
         white-space: normal;
         border-left: 2px solid rgba(0,127,255,0.3);
     }
-
     .dropdown-menu a:hover {
         background: rgba(0,127,255,0.1);
         padding-left: 20px;
     }
 }
-
-/* Ajustement pour très petits écrans (navbar en colonne) */
 @media (max-width: 680px) {
     .dropdown-menu {
         padding-left: 15px;
