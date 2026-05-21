@@ -101,58 +101,66 @@ window.sendFooterDevis = function(e) {
 };
 
 // =========================================
-// GESTION DU MENU DÉROULANT SERVICES (mobile + desktop)
+// GESTION DU MENU DÉROULANT SERVICES (mobile & desktop harmonisé)
 // =========================================
 const dropdown = document.querySelector('.dropdown');
 const toggle = document.getElementById('servicesToggle');
-const dropdownMenu = document.querySelector('.dropdown-menu');
-
-function closeDropdown() {
-    if (dropdown) dropdown.classList.remove('open');
-}
-
-function toggleDropdown(e) {
-    if (window.innerWidth <= 768) {
-        e.preventDefault();
-        e.stopPropagation();
-        dropdown.classList.toggle('open');
-    }
-}
 
 if (dropdown && toggle) {
-    // Clic sur le bouton "Services"
+    let isOpen = false;
+
+    function openDropdown() {
+        dropdown.classList.add('open');
+        isOpen = true;
+    }
+    function closeDropdown() {
+        dropdown.classList.remove('open');
+        isOpen = false;
+    }
+    function toggleDropdown(e) {
+        // Ne fonctionne qu'en mode mobile (largeur <= 768px)
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (dropdown.classList.contains('open')) {
+                closeDropdown();
+            } else {
+                openDropdown();
+            }
+        }
+    }
+
+    // Événements tactiles ET souris pour mobile
     toggle.addEventListener('click', toggleDropdown);
     toggle.addEventListener('touchstart', toggleDropdown, { passive: false });
 
-    // Fermeture si on clique en dehors (sur document)
-    document.addEventListener('click', function(e) {
+    // Fermer si on clique en dehors du dropdown (mobile uniquement)
+    const closeOnOutsideClick = (e) => {
         if (window.innerWidth <= 768 && !dropdown.contains(e.target)) {
             closeDropdown();
         }
-    });
-    document.addEventListener('touchstart', function(e) {
-        if (window.innerWidth <= 768 && !dropdown.contains(e.target)) {
+    };
+    document.addEventListener('click', closeOnOutsideClick);
+    document.addEventListener('touchstart', closeOnOutsideClick);
+
+    // Réinitialiser l'état au redimensionnement (si on passe en desktop)
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && dropdown.classList.contains('open')) {
             closeDropdown();
         }
     });
 
-    // Évite que le clic sur un lien du menu ne ferme immédiatement (optionnel)
-    dropdownMenu?.querySelectorAll('a').forEach(link => {
+    // Empêche la propagation des clics sur les liens du menu pour ne pas fermer immédiatement
+    const menuLinks = document.querySelectorAll('.dropdown-menu a');
+    menuLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                // Laisse le temps à la navigation de se faire
-                setTimeout(closeDropdown, 150);
-            }
+            // Laisse le temps à la navigation de se faire, puis ferme
+            setTimeout(() => {
+                if (window.innerWidth <= 768) closeDropdown();
+            }, 100);
         });
     });
 }
-
-// Réinitialiser l'état du dropdown lors du redimensionnement
-window.addEventListener('resize', function() {
-    if (window.innerWidth > 768 && dropdown) {
-        dropdown.classList.remove('open');
-    }
-});
 
 // =========================================
 // INITIALISATION AU CHARGEMENT
