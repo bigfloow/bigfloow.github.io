@@ -851,7 +851,7 @@ body.dark-theme .toast-notification {
     border-radius: 20px;
     padding: 12px 0;
     min-width: 240px;
-    box-shadow: 0 20px 35px -10px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.02);
+    box-shadow: 0 20px 35px -10px rgba(0,0,0,0.15);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-15px);
@@ -859,13 +859,39 @@ body.dark-theme .toast-notification {
     list-style: none;
     z-index: 1001;
     border: 1px solid rgba(0,0,0,0.05);
-    backdrop-filter: blur(2px);
 }
+/* DESKTOP : survol */
 @media (min-width: 769px) {
     .dropdown:hover .dropdown-menu {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
+    }
+}
+/* MOBILE : classe .open */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        position: static;
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        border: 1px solid rgba(0,0,0,0.1);
+        padding-left: 20px;
+        margin-top: 8px;
+        display: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: none;
+    }
+    .dropdown.open .dropdown-menu {
+        display: block;
+    }
+    /* Supprime l'effet hover sur mobile */
+    .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
     }
 }
 .dropdown-menu li {
@@ -887,7 +913,6 @@ body.dark-theme .toast-notification {
     width: 24px;
     color: var(--accent-blue);
     font-size: 1rem;
-    transition: transform 0.2s;
 }
 .dropdown-menu a:hover {
     background: rgba(0,127,255,0.06);
@@ -895,13 +920,9 @@ body.dark-theme .toast-notification {
     padding-left: 28px;
     color: var(--accent-blue);
 }
-.dropdown-menu a:hover i {
-    transform: translateX(3px);
-    color: var(--accent-orange);
-}
+/* Dark theme */
 body.dark-theme .dropdown-menu {
     background: #1e1e1e;
-    box-shadow: 0 20px 35px -10px rgba(0,0,0,0.5);
     border-color: #333;
 }
 body.dark-theme .dropdown-menu a {
@@ -913,46 +934,13 @@ body.dark-theme .dropdown-menu a i {
 body.dark-theme .dropdown-menu a:hover {
     background: rgba(0,127,255,0.15);
     border-left-color: var(--accent-blue);
-    color: white;
-}
-body.dark-theme .dropdown-menu a:hover i {
-    color: var(--accent-blue);
 }
 @media (max-width: 768px) {
-    .dropdown-menu {
-        position: static;
-        background: transparent;
-        box-shadow: none;
-        border: none;
-        backdrop-filter: none;
-        padding-left: 20px;
-        margin-top: 8px;
-        margin-bottom: 8px;
-        display: none;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        transition: none;
-    }
-    .dropdown.open .dropdown-menu {
-        display: block;
-    }
     .dropdown-menu a {
-        padding: 10px 15px;
-        font-size: 0.85rem;
         white-space: normal;
-        border-left: 2px solid rgba(0,127,255,0.3);
+        padding: 10px 15px;
     }
-    .dropdown-menu a:hover {
-        background: rgba(0,127,255,0.1);
-        padding-left: 20px;
-    }
-}
-@media (max-width: 680px) {
-    .dropdown-menu {
-        padding-left: 15px;
-    }
-    .dropdown-menu a {
-        padding: 8px 12px;
+    .dropdown-menu a i {
+        width: 20px;
     }
 }
