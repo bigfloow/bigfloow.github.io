@@ -903,3 +903,30 @@ img[loading="lazy"] {
 @media (prefers-color-scheme: dark) {
     /* Optionnel : adaptation au thème sombre du navigateur */
 }
+
+/* =========================================
+   EFFET TILT 3D (Nordcraft style)
+   ========================================= */
+.expertise-card {
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease-out, box-shadow 0.3s ease;
+    will-change: transform;
+}
+.expertise-card .card-icon,
+.expertise-card h3,
+.expertise-card p,
+.expertise-card .card-line,
+.expertise-card .card-number,
+.expertise-card .web-card-tags,
+.expertise-card .new-badge {
+    transition: transform 0.2s ease-out;
+}
+/* Sur mobile, on désactive l'effet 3D pour éviter les bugs */
+@media (max-width: 768px) {
+    .expertise-card {
+        transform: none !important;
+    }
+    .expertise-card::after {
+        display: none;
+    }
+}
