@@ -337,7 +337,7 @@ body {
     padding: 4px 12px; border-radius: 20px;
 }
 .story-block--light {
-    background: #FFF8F0;  /* blanc beige */
+    background: #FFFFFF; 
     border: 1px solid #eeeeee;
 }
 .story-block--light p strong {
@@ -350,7 +350,7 @@ body {
     margin-top: 10px;
 }
 .logo-display-block {
-    background: #FFF8F0;  /* blanc beige */
+    background: #FFFFFF;
     border: 1px solid #eeeeee;
     border-radius: 12px;
     padding: 20px;
@@ -366,7 +366,7 @@ body {
 }
 .logo-caption { font-size: 0.7rem; color: #888; }
 .cert-mini-block {
-    background: #FFFCF8;  /* blanc beige très clair */
+    background: #FFFFFF;  /* blanc beige très clair */
     border: 1px solid #eeeeee;
     border-right: 3px solid var(--accent-orange);
     border-radius: 12px;
