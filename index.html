@@ -147,6 +147,39 @@
             transition: all 0.3s ease;
         }
     </style>
+
+    <style>
+    /* Animation fade-in au scroll */
+    .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    /* Correction du curseur pour les cartes cliquables */
+    .expertise-card {
+        cursor: pointer;
+        transform-style: preserve-3d;
+        transition: transform 0.2s ease-out, box-shadow 0.3s ease;
+    }
+    /* Effet de brillance au survol (optionnel) */
+    .expertise-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+        background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.2), transparent 80%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+    }
+    .expertise-card:hover::after {
+        opacity: 1;
+    }
+</style>
 </head>
 
 <!-- STICKERS DESIGN EN ARRIÈRE-PLAN -->
