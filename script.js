@@ -1,5 +1,5 @@
 // =========================================
-// LIGHTBOX GLOBALE
+// LIGHTBOX GLOBALE (corrigée)
 // =========================================
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
@@ -101,72 +101,86 @@ window.sendFooterDevis = function(e) {
 };
 
 // =========================================
-// GESTION DU MENU DÉROULANT SERVICES (mobile & desktop harmonisé)
+// EFFET TILT 3D (comme Nordcraft)
 // =========================================
-const dropdown = document.querySelector('.dropdown');
-const toggle = document.getElementById('servicesToggle');
-
-if (dropdown && toggle) {
-    let isOpen = false;
-
-    function openDropdown() {
-        dropdown.classList.add('open');
-        isOpen = true;
-    }
-    function closeDropdown() {
-        dropdown.classList.remove('open');
-        isOpen = false;
-    }
-    function toggleDropdown(e) {
-        // Ne fonctionne qu'en mode mobile (largeur <= 768px)
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            e.stopPropagation();
-            if (dropdown.classList.contains('open')) {
-                closeDropdown();
-            } else {
-                openDropdown();
-            }
-        }
-    }
-
-    // Événements tactiles ET souris pour mobile
-    toggle.addEventListener('click', toggleDropdown);
-    toggle.addEventListener('touchstart', toggleDropdown, { passive: false });
-
-    // Fermer si on clique en dehors du dropdown (mobile uniquement)
-    const closeOnOutsideClick = (e) => {
-        if (window.innerWidth <= 768 && !dropdown.contains(e.target)) {
-            closeDropdown();
-        }
-    };
-    document.addEventListener('click', closeOnOutsideClick);
-    document.addEventListener('touchstart', closeOnOutsideClick);
-
-    // Réinitialiser l'état au redimensionnement (si on passe en desktop)
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && dropdown.classList.contains('open')) {
-            closeDropdown();
-        }
-    });
-
-    // Empêche la propagation des clics sur les liens du menu pour ne pas fermer immédiatement
-    const menuLinks = document.querySelectorAll('.dropdown-menu a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            // Laisse le temps à la navigation de se faire, puis ferme
-            setTimeout(() => {
-                if (window.innerWidth <= 768) closeDropdown();
-            }, 100);
+function initTiltEffect() {
+    const cards = document.querySelectorAll('.expertise-card');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            if (window.innerWidth <= 768) return; // désactivé sur mobile
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateY = ((x - centerX) / centerX) * 8;   // max ±8 degrés
+            const rotateX = ((y - centerY) / centerY) * -8;
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(5px)`;
+            // Met à jour la position de la brillance
+            const percentX = (x / rect.width) * 100;
+            const percentY = (y / rect.height) * 100;
+            card.style.setProperty('--mouse-x', `${percentX}%`);
+            card.style.setProperty('--mouse-y', `${percentY}%`);
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+            card.style.transition = 'transform 0.3s ease-out';
+            setTimeout(() => { card.style.transition = ''; }, 300);
         });
     });
 }
 
 // =========================================
-// INITIALISATION AU CHARGEMENT
+// ANIMATIONS AU SCROLL (fade-up)
 // =========================================
-document.addEventListener('DOMContentLoaded', function() {
-    // Thème (clair/sombre)
+function initScrollAnimations() {
+    const fadeElements = document.querySelectorAll('.expertise-card, .story-block, .founder-card, .stat-item, .story-logos-row > *');
+    fadeElements.forEach(el => el.classList.add('fade-up'));
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    fadeElements.forEach(el => observer.observe(el));
+}
+
+// =========================================
+// STATISTIQUES (améliorées)
+// =========================================
+function initStatsCounter() {
+    const stats = document.querySelectorAll('.stat-number');
+    if (!stats.length) return;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = parseInt(entry.target.getAttribute('data-target'));
+                if (isNaN(target)) return;
+                let count = 0;
+                const step = target / 50;
+                const update = () => {
+                    count += step;
+                    if (count < target) {
+                        entry.target.innerText = Math.ceil(count) + '+';
+                        requestAnimationFrame(update);
+                    } else {
+                        entry.target.innerText = target + '+';
+                    }
+                };
+                update();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    stats.forEach(s => observer.observe(s));
+}
+
+// =========================================
+// GESTION DU THÈME (corrigée)
+// =========================================
+function initTheme() {
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
     function updateIcon(isDark) {
@@ -190,31 +204,12 @@ document.addEventListener('DOMContentLoaded', function() {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
         if (!localStorage.getItem('bigfloow-theme')) applyTheme(e.matches);
     });
+}
 
-    // Stats counter
-    const stats = document.querySelectorAll('.stat-number');
-    if (stats.length) {
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = parseInt(entry.target.getAttribute('data-target'));
-                    let count = 0;
-                    const update = () => {
-                        if (count < target) {
-                            count += target / 50;
-                            entry.target.innerText = Math.ceil(count) + '+';
-                            requestAnimationFrame(update);
-                        } else entry.target.innerText = target + '+';
-                    };
-                    update();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        stats.forEach(s => observer.observe(s));
-    }
-
-    // Cookies
+// =========================================
+// GESTION DES COOKIES
+// =========================================
+function initCookies() {
     const cookieBanner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('accept-cookie');
     if (cookieBanner && !localStorage.getItem('bigfloow_cookies')) cookieBanner.style.display = 'block';
@@ -222,38 +217,14 @@ document.addEventListener('DOMContentLoaded', function() {
         acceptBtn.addEventListener('click', () => {
             localStorage.setItem('bigfloow_cookies', 'true');
             if (cookieBanner) cookieBanner.style.display = 'none';
-            showToast('Cookies acceptés !');
+            showToast('🍪 Cookies acceptés !');
         });
     }
+}
 
-    // Lightbox
-    if (lightbox) {
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox || e.target.classList.contains('lightbox-close')) closeLightbox();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeLightbox();
-        });
-    }
-    document.querySelectorAll('.story-logo-img, .mini-logo').forEach(img => {
-        img.style.cursor = 'zoom-in';
-        img.addEventListener('click', () => {
-            if (lightbox && lightboxImg && lightboxCaption) {
-                lightbox.classList.add('active');
-                lightboxImg.src = img.src;
-                lightboxCaption.innerText = img.alt || 'Création BiG FlooW';
-                document.body.style.overflow = 'hidden';
-            }
-        });
-    });
-
-    // Ripple effect sur certains boutons
-    document.querySelectorAll('.btn-contact, .footer-devis-btn, .newsletter-btn, .footer-whatsapp-btn').forEach(btn => {
-        btn.classList.add('ripple');
-    });
-});
-
-// === CHATBOT (chargement au clic) ===
+// =========================================
+// CHATBOT (chargement au clic)
+// =========================================
 let chatbaseLoaded = false;
 window.toggleChatbot = function() {
     if (!chatbaseLoaded) {
@@ -277,3 +248,35 @@ window.toggleChatbot = function() {
         }
     }
 };
+
+// =========================================
+// INITIALISATION AU CHARGEMENT
+// =========================================
+document.addEventListener('DOMContentLoaded', function() {
+    initTheme();
+    initStatsCounter();
+    initCookies();
+    initTiltEffect();      // ← NOUVEAU : effet 3D
+    initScrollAnimations(); // ← NOUVEAU : fade-in au scroll
+
+    // Lightbox global (déjà définie)
+    if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.classList.contains('lightbox-close')) closeLightbox();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    }
+    document.querySelectorAll('.story-logo-img, .mini-logo').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => {
+            if (lightbox && lightboxImg && lightboxCaption) {
+                lightbox.classList.add('active');
+                lightboxImg.src = img.src;
+                lightboxCaption.innerText = img.alt || 'Création BiG FlooW';
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+});
