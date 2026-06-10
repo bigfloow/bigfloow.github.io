@@ -432,79 +432,129 @@ body {
 .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
 
 /* =========================================
-   DARK THEME
+   DARK THEME (CORRIGÉ)
    ========================================= */
 body.dark-theme {
     background-color: #121212;
     color: #ffffff;
 }
+
+/* Cartes d'expertise */
 body.dark-theme .expertise-card,
 body.dark-theme .story-block,
 body.dark-theme .founder-card,
-body.dark-theme .logo-display-block,
-body.dark-theme .cert-mini-block,
 body.dark-theme .story-block--light {
-    background: #2a2520;  /* beige foncé pour le dark mode (au lieu de #1e1e1e) */
+    background: #1e1e1e;  /* noir/gris foncé au lieu de beige */
     border-color: #333;
     color: #ffffff;
 }
+
+/* === NOUVEAU : CORRECTION POUR LES LOGOS ET CERTIFICATS === */
+body.dark-theme .logo-display-block,
+body.dark-theme .cert-mini-block {
+    background: #1e1e1e;   /* fond noir */
+    border-color: #333;
+    color: #ffffff;
+}
+
+/* === NOUVEAU : CORRECTION POUR LES BADGES D'ATTESTATIONS === */
+body.dark-theme .founder-badge {
+    background: #2a2a2a;    /* fond gris foncé au lieu de beige */
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+/* Texte des logos et certificats */
+body.dark-theme .logo-caption,
+body.dark-theme .cert-mini-block p,
+body.dark-theme .cert-year {
+    color: #ffffff;
+}
+
+/* Garder l'année en bleu/orange selon ton style */
+body.dark-theme .cert-year {
+    color: var(--accent-blue);
+}
+
+/* Images des logos en mode sombre */
+body.dark-theme .story-logo-img {
+    filter: grayscale(100%) brightness(1.2);
+    opacity: 0.9;
+}
+
+/* Conteneur principal de la section histoire */
+body.dark-theme .story-part {
+    background: #0a0a0a;
+}
+
+body.dark-theme .story-part--dark {
+    background: #0f0f0f;
+}
+
+/* Cartes de la section histoire */
+body.dark-theme .story-block,
+body.dark-theme .story-block--light {
+    background: #1e1e1e;
+    border-color: #333;
+}
+
+body.dark-theme .story-block p,
+body.dark-theme .story-block--light p {
+    color: #cccccc;
+}
+
+body.dark-theme .story-block p strong,
+body.dark-theme .story-block--light p strong {
+    color: var(--accent-blue) !important;
+}
+
+/* Texte principal */
+body.dark-theme .story-block h3,
+body.dark-theme .founder-info h3,
+body.dark-theme .expertise-card h3 {
+    color: #ffffff;
+}
+
+body.dark-theme .expertise-card p {
+    color: #bbbbbb;
+}
+
+/* Navbar en mode sombre */
 body.dark-theme .navbar {
-    background: rgba(18,18,18,0.95);
+    background: rgba(18, 18, 18, 0.95);
     border-bottom: 1px solid #333;
 }
+
 body.dark-theme .brand,
 body.dark-theme .nav-links a {
     color: #ffffff;
 }
-body.dark-theme .story-part {
-    background: #FFF5EA;  /* beige légèrement plus chaud pour contraster */
-}
-body.dark-theme .story-part--dark {
-    background: #FFF8F0;  /* blanc beige */
-}
-body.dark-theme .story-block p,
-body.dark-theme .story-block--light p,
-body.dark-theme .logo-caption,
-body.dark-theme .cert-mini-block p,
-body.dark-theme .founder-badge {
-    color: #e0e0e0;
-}
-body.dark-theme .founder-badge {
-    background:  #FFFAF5;  /* beige très clair */
-    border-color: #444;
-}
-body.dark-theme .story-logo-img {
-    filter: grayscale(100%) brightness(1.2);
-}
-body.dark-theme .story-block p strong,
-body.dark-theme .story-block--light p strong,
-body.dark-theme p strong {
+
+/* Survol des liens */
+body.dark-theme .footer-col ul li a:hover {
     color: var(--accent-blue) !important;
 }
-body.dark-theme .highlight {
-    color: var(--accent-blue);
-}
+
+/* Boutons et éléments supplémentaires */
 body.dark-theme .card-number {
-    color: rgba(255,255,255,0.03) !important;
+    color: rgba(255, 255, 255, 0.03) !important;
 }
+
 body.dark-theme .expertise-card--wide {
     background: linear-gradient(135deg, #1a1a1a 60%, #1f1810);
 }
+
 body.dark-theme .web-tag {
-    background: rgba(0,127,255,0.15);
+    background: rgba(0, 127, 255, 0.15);
     color: #6bb5ff;
 }
+
 body.dark-theme .stats-section {
     background: #000;
 }
-body.dark-theme .footer-col a:hover {
+
+body.dark-theme .highlight {
     color: var(--accent-blue);
-}
-body.dark-theme .expertise-card h3,
-body.dark-theme .expertise-card p,
-body.dark-theme .story-block h3,
-body.dark-theme .founder-info h3 {
-    color: #ffffff;
 }
 
 /* =========================================
