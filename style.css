@@ -980,3 +980,51 @@ img[loading="lazy"] {
         display: none;
     }
 }
+
+/* =========================================
+   NOUVELLE CARTE IA
+   ========================================= */
+.expertise-card--ia {
+    border-color: #6C3CE1;
+    background: linear-gradient(135deg, #FFF8F0 60%, #F5F0FF);
+    transition: all 0.3s ease;
+}
+
+body.dark-theme .expertise-card--ia {
+    background: linear-gradient(135deg, #1a1a1a 60%, #1a1025);
+    border-color: #6C3CE1;
+}
+
+.expertise-card--ia:hover {
+    border-color: #6C3CE1;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(108, 60, 225, 0.2);
+}
+
+body.dark-theme .expertise-card--ia:hover {
+    box-shadow: 0 8px 30px rgba(108, 60, 225, 0.3);
+}
+
+/* Ajustement de la grille pour avoir 2 cartes en bas */
+.expertise-grid--bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 10px;
+}
+
+/* Sur tablette : les deux cartes restent côte à côte */
+@media (max-width: 992px) {
+    .expertise-grid--bottom {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}
+
+/* Sur mobile : les cartes passent en colonne */
+@media (max-width: 576px) {
+    .expertise-grid--bottom {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
