@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <title>Portfolio IA - BiG FlooW | Images Générées par Intelligence Artificielle</title>
+    <meta name="description" content="Découvrez notre galerie d'images générées par IA. Téléchargez des photos gratuites avec leurs prompts ou commandez des créations premium uniques.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Portfolio IA - BiG FlooW">
+    <meta property="og:description" content="Galerie d'images générées par intelligence artificielle. Gratuit et premium.">
+    <meta property="og:url" content="https://bigfloow.github.io/portfolio-ia.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://bigfloow.github.io/logo-big-floow.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Portfolio IA - BiG FlooW">
+    <meta name="twitter:description" content="Images générées par IA - Gratuites et Premium">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="fac2_logo.png">
+    
+    <!-- Polices -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Styles spécifiques au portfolio IA */
+        .ia-header {
+            padding: 120px 4% 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #f8f4f0 0%, #fff 100%);
+        }
+        
+        body.dark-theme .ia-header {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+        
+        .ia-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        
+        .ia-header .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-soft);
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        
+        .ia-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0 10px;
+            flex-wrap: wrap;
+        }
+        
+        .ia-tab-btn {
+            padding: 12px 30px;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            background: transparent;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--dark-grey);
+        }
+        
+        body.dark-theme .ia-tab-btn {
+            color: #fff;
+            border-color: #444;
+        }
+        
+        .ia-tab-btn.active {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: white;
+        }
+        
+        .ia-tab-btn:hover:not(.active) {
+            border-color: var(--accent-orange);
+            transform: translateY(-2px);
+        }
+        
+        .ia-tab-btn .badge {
+            display: inline-block;
+            background: var(--accent-orange);
+            color: white;
+            font-size: 0.6rem;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        
+        .ia-tab-btn .badge.premium {
+            background: #f5a623;
+        }
+        
+        .ia-gallery {
+            padding: 40px 4% 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .ia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .ia-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.5s ease forwards;
+        }
+        
+        body.dark-theme .ia-card {
+            background: #1e1e1e;
+            border-color: #333;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+        }
+        
+        .ia-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .ia-card:nth-child(1) { animation-delay: 0.05s; }
+        .ia-card:nth-child(2) { animation-delay: 0.10s; }
+        .ia-card:nth-child(3) { animation-delay: 0.15s; }
+        .ia-card:nth-child(4) { animation-delay: 0.20s; }
+        .ia-card:nth-child(5) { animation-delay: 0.25s; }
+        .ia-card:nth-child(6) { animation-delay: 0.30s; }
+        .ia-card:nth-child(7) { animation-delay: 0.35s; }
+        .ia-card:nth-child(8) { animation-delay: 0.40s; }
+        
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .ia-card-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: #f0f0f0;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .ia-card-image:hover {
+            transform: scale(1.03);
+        }
+        
+        body.dark-theme .ia-card-image {
+            background: #2a2a2a;
+        }
+        
+        .ia-card-body {
+            padding: 18px 20px 20px;
+        }
+        
+        .ia-card-body h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            color: var(--dark-grey);
+        }
+        
+        body.dark-theme .ia-card-body h3 {
+            color: #fff;
+        }
+        
+        .ia-card-body .prompt {
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            background: #f5f5f5;
+            padding: 10px 12px;
+            border-radius: 8px;
+            margin: 8px 0 12px;
+            font-style: italic;
+            max-height: 60px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        body.dark-theme .ia-card-body .prompt {
+            background: #2a2a2a;
+            color: #bbb;
+        }
+        
+        .ia-card-body .prompt .see-more {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(to left, #f5f5f5, transparent);
+            padding-left: 20px;
+            color: var(--accent-blue);
+            font-style: normal;
+            font-weight: 600;
+            font-size: 0.7rem;
+            cursor: pointer;
+        }
+        
+        body.dark-theme .ia-card-body .prompt .see-more {
+            background: linear-gradient(to left, #2a2a2a, transparent);
+        }
+        
+        .ia-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        body.dark-theme .ia-card-footer {
+            border-top-color: #333;
+        }
+        
+        .ia-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 3px 12px;
+            border-radius: 20px;
+            background: rgba(0,127,255,0.1);
+            color: var(--accent-blue);
+        }
+        
+        .ia-tag.free {
+            background: rgba(46, 213, 115, 0.15);
+            color: #2ed573;
+        }
+        
+        .ia-tag.premium {
+            background: rgba(245, 166, 35, 0.15);
+            color: #f5a623;
+        }
+        
+        .ia-price {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--accent-orange);
+        }
+        
+        body.dark-theme .ia-price {
+            color: #f5a623;
+        }
+        
+        .ia-btn-buy {
+            background: var(--accent-orange);
+            color: white;
+            border: none;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .ia-btn-buy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(237, 127, 16, 0.3);
+        }
+        
+        .ia-btn-buy i {
+            margin-right: 5px;
+        }
+        
+        /* Modal de paiement */
+        .payment-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            z-index: 10002;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .payment-modal.active {
+            display: flex;
+        }
+        
+        .payment-modal-content {
+            background: #fff;
+            border-radius: 24px;
+            max-width: 480px;
+            width: 100%;
+            padding: 35px 30px 30px;
+            position: relative;
+            animation: modalIn 0.3s ease;
+        }
+        
+        body.dark-theme .payment-modal-content {
+            background: #1e1e1e;
+            border: 1px solid #333;
+        }
+        
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .payment-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            transition: 0.3s;
+            background: none;
+            border: none;
+        }
+        
+        .payment-modal-close:hover {
+            color: var(--dark-grey);
+        }
+        
+        body.dark-theme .payment-modal-close:hover {
+            color: #fff;
+        }
+        
+        .payment-modal-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            color: var(--dark-grey);
+        }
+        
+        body.dark-theme .payment-modal-content h2 {
+            color: #fff;
+        }
+        
+        .payment-modal-content .product-info {
+            color: var(--text-soft);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        body.dark-theme .payment-modal-content .product-info {
+            color: #bbb;
+        }
+        
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 18px;
+            border: 2px solid #e8e8e8;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+        
+        body.dark-theme .payment-option {
+            background: #2a2a2a;
+            border-color: #444;
+        }
+        
+        .payment-option:hover {
+            border-color: var(--accent-blue);
+            transform: translateX(5px);
+        }
+        
+        .payment-option.selected {
+            border-color: var(--accent-blue);
+            background: rgba(0,127,255,0.05);
+        }
+        
+        body.dark-theme .payment-option.selected {
+            background: rgba(0,127,255,0.1);
+        }
+        
+        .payment-option-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            color: white;
+        }
+        
+        .payment-option-icon.mixx {
+            background: linear-gradient(135deg, #6C3CE1, #A855F7);
+        }
+        
+        .payment-option-icon.moov {
+            background: linear-gradient(135deg, #F59E0B, #FBBF24);
+        }
+        
+        .payment-option-info {
+            flex: 1;
+        }
+        
+        .payment-option-info .name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--dark-grey);
+        }
+        
+        body.dark-theme .payment-option-info .name {
+            color: #fff;
+        }
+        
+        .payment-option-info .desc {
+            font-size: 0.75rem;
+            color: var(--text-soft);
+        }
+        
+        body.dark-theme .payment-option-info .desc {
+            color: #999;
+        }
+        
+        .payment-option-radio {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: 0.3s;
+        }
+        
+        .payment-option.selected .payment-option-radio {
+            border-color: var(--accent-blue);
+        }
+        
+        .payment-option-radio::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        
+        .payment-option.selected .payment-option-radio::after {
+            opacity: 1;
+        }
+        
+        .payment-confirm-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .payment-confirm-btn:hover {
+            background: #0066cc;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,127,255,0.3);
+        }
+        
+        .payment-confirm-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .payment-confirm-btn i {
+            margin-right: 8px;
+        }
+        
+        /* Filtres */
+        .ia-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .ia-filter-btn {
+            padding: 6px 18px;
+            border-radius: 30px;
+            border: 1px solid #e0e0e0;
+            background: transparent;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body.dark-theme .ia-filter-btn {
+            border-color: #444;
+            color: #fff;
+        }
+        
+        .ia-filter-btn.active {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: white;
+        }
+        
+        .ia-filter-btn:hover:not(.active) {
+            border-color: var(--accent-orange);
+        }
+        
+        /* Aucun résultat */
+        .ia-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-soft);
+        }
+        
+        .ia-empty i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.3;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .ia-header {
+                padding: 100px 4% 30px;
+            }
+            .ia-tabs {
+                gap: 10px;
+            }
+            .ia-tab-btn {
+                padding: 8px 20px;
+                font-size: 0.8rem;
+            }
+            .ia-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+            }
+            .ia-card-image {
+                height: 160px;
+            }
+            .ia-card-body {
+                padding: 12px 14px 14px;
+            }
+            .ia-card-body .prompt {
+                font-size: 0.7rem;
+                padding: 8px 10px;
+            }
+            .payment-modal-content {
+                padding: 25px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .ia-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .ia-card-image {
+                height: 130px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- STICKERS DESIGN -->
+<div class="bg-stickers" aria-hidden="true">
+    <i class="fas fa-pen-nib sticker s1"></i>
+    <i class="fas fa-bezier-curve sticker s2"></i>
+    <i class="fas fa-palette sticker s3"></i>
+    <i class="fas fa-vector-square sticker s4"></i>
+    <i class="fas fa-draw-polygon sticker s5"></i>
+    <i class="fas fa-crop-alt sticker s6"></i>
+    <i class="fas fa-magic sticker s7"></i>
+    <i class="fas fa-object-group sticker s8"></i>
+    <i class="fas fa-layer-group sticker s9"></i>
+    <i class="fas fa-ruler-combined sticker s10"></i>
+    <i class="fas fa-cube sticker s11"></i>
+    <i class="fas fa-paint-brush sticker s12"></i>
+    <i class="fas fa-globe sticker s13"></i>
+    <i class="fas fa-film sticker s14"></i>
+</div>
+
+<!-- ===== NAVBAR (identique à index.html) ===== -->
+<nav class="navbar">
+    <div class="brand">BiG <span class="floo">Floo</span><span class="w">W</span></div>
+    <ul class="nav-links">
+        <li><button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button></li>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="portfolio.html">Graphisme</a></li>
+        <li><a href="portfolio-3d.html">3D</a></li>
+        <li><a href="portfolio-branding.html">Branding</a></li>
+        <li><a href="portfolio-web.html">Web</a></li>
+        <li><a href="portfolio-ia.html" class="btn-contact" style="background: var(--accent-orange) !important; border-color: var(--accent-orange) !important;">IA</a></li>
+        <li><a href="#contact" class="btn-contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- ===== HEADER ===== -->
+<header class="ia-header">
+    <h1>Portfolio <span class="highlight">IA</span></h1>
+    <p class="subtitle">Découvrez notre galerie d'images générées par intelligence artificielle. Des créations uniques, accessibles à tous.</p>
+    
+    <div class="ia-tabs">
+        <button class="ia-tab-btn active" data-tab="all">
+            <i class="fas fa-th"></i> Tous
+        </button>
+        <button class="ia-tab-btn" data-tab="free">
+            <i class="fas fa-gift"></i> Gratuit <span class="badge">Free</span>
+        </button>
+        <button class="ia-tab-btn" data-tab="premium">
+            <i class="fas fa-crown"></i> Premium <span class="badge premium">💰</span>
+        </button>
+    </div>
+</header>
+
+<!-- ===== GALERIE ===== -->
+<section class="ia-gallery">
+    <div class="ia-filters">
+        <button class="ia-filter-btn active" data-filter="all">Toutes</button>
+        <button class="ia-filter-btn" data-filter="portrait">Portraits</button>
+        <button class="ia-filter-btn" data-filter="paysage">Paysages</button>
+        <button class="ia-filter-btn" data-filter="abstract">Abstrait</button>
+        <button class="ia-filter-btn" data-filter="cyber">Cyberpunk</button>
+    </div>
+    
+    <div class="ia-grid" id="ia-grid">
+        <!-- Les cartes seront générées par JavaScript -->
+    </div>
+</section>
+
+<!-- ===== FOOTER (identique à index.html) ===== -->
+<footer class="main-footer" id="contact">
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-col branding">
+                <div class="brand" style="color:white; margin-bottom: 20px;">BiG <span class="floo">Floo</span><span class="w">W</span></div>
+                <p>Nous transformons vos visions en réalités visuelles percutantes depuis Lomé.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61553550453900" target="_blank" rel="noopener noreferrer" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/bigfloow0/" target="_blank" rel="noopener noreferrer" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@big.floow" target="_blank" rel="noopener noreferrer" class="social-icon tiktok"><i class="fab fa-tiktok"></i></a>
+                    <a href="http://www.youtube.com/@BiGFlooWlyrics" target="_blank" rel="noopener noreferrer" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.linkedin.com/company/big-floow/" target="_blank" rel="noopener noreferrer" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="footer-quality-badge">
+                    <i class="fas fa-medal"></i>
+                    <span>Design Certifié · Togo · 2022</span>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-chevron-right footer-link-icon"></i> Accueil</a></li>
+                    <li><a href="portfolio.html"><i class="fas fa-chevron-right footer-link-icon"></i> Graphisme</a></li>
+                    <li><a href="portfolio-3d.html"><i class="fas fa-chevron-right footer-link-icon"></i> Modélisation 3D</a></li>
+                    <li><a href="portfolio-branding.html"><i class="fas fa-chevron-right footer-link-icon"></i> Branding</a></li>
+                    <li><a href="portfolio-contenus.html"><i class="fas fa-chevron-right footer-link-icon"></i> Contenus</a></li>
+                    <li><a href="portfolio-web.html"><i class="fas fa-chevron-right footer-link-icon"></i> Création Web <span class="footer-new-tag">Nouveau</span></a></li>
+                    <li><a href="portfolio-ia.html"><i class="fas fa-chevron-right footer-link-icon"></i> Portfolio IA <span class="footer-new-tag">🔥</span></a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+22890498680"><i class="fas fa-phone-alt"></i> +228 90 49 86 80</a></li>
+                    <li><a href="tel:+22897160873"><i class="fas fa-phone-alt"></i> +228 97 16 08 73</a></li>
+                    <li><a href="mailto:bigfloow0@gmail.com"><i class="fas fa-envelope"></i> bigfloow0@gmail.com</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> Bd de la Kara, Lomé</li>
+                    <li><a href="https://wa.me/22890498680" target="_blank" rel="noopener noreferrer" class="footer-whatsapp-btn"><i class="fab fa-whatsapp"></i> Écrire sur WhatsApp</a></li>
+                    <li><button onclick="toggleChatbot()" class="footer-help-btn"><i class="fas fa-robot"></i> Besoin d'aide supplémentaire ?</button></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-col--devis">
+                <h4>Devis Rapide</h4>
+                <p class="footer-devis-intro">Un projet en tête ? Dites-nous en plus :</p>
+                <form class="footer-devis-form" onsubmit="sendFooterDevis(event)">
+                    <input type="text" id="devis-name" placeholder="Votre nom" required>
+                    <select id="devis-service" required>
+                        <option value="" disabled selected>Type de service</option>
+                        <option value="Graphisme / Logo">Graphisme / Logo</option>
+                        <option value="Modélisation 3D">Modélisation 3D</option>
+                        <option value="Branding complet">Branding complet</option>
+                        <option value="Création de site internet">Création de site internet</option>
+                        <option value="Contenu vidéo">Contenu vidéo</option>
+                        <option value="Image IA">Image IA</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                    <input type="text" id="devis-budget" placeholder="Budget estimé (FCFA)">
+                    <button type="submit" class="footer-devis-btn"><i class="fab fa-whatsapp"></i> Envoyer via WhatsApp</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-newsletter">
+            <div class="footer-newsletter-inner">
+                <div class="footer-newsletter-text">
+                    <i class="fas fa-bell"></i>
+                    <span>Restez informé de nos dernières créations IA</span>
+                </div>
+                <div class="footer-newsletter-form">
+                    <input type="email" id="newsletter-email" placeholder="Votre adresse email" required>
+                    <button onclick="subscribeNewsletter()" class="newsletter-btn">S'inscrire</button>
+                </div>
+                <div class="footer-bottom-links">
+                    <a href="mentions-legales.html" class="legal-btn"><i class="fas fa-gavel"></i> Mentions légales</a>
+                    <a href="politique-confidentialite.html" class="legal-btn"><i class="fas fa-shield-alt"></i> Confidentialité</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="line-gradient"></div>
+            <div class="footer-bottom-inner">
+                <p>© 2026 <span style="color: #ED7F10;">BiG FlooW</span> – Tous droits réservés. Design par Victor HALLO.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== MODAL DE PAIEMENT ===== -->
+<div class="payment-modal" id="paymentModal">
+    <div class="payment-modal-content">
+        <button class="payment-modal-close" onclick="closePaymentModal()">&times;</button>
+        <h2>💳 Paiement</h2>
+        <p class="product-info" id="paymentProductInfo">Image IA Premium</p>
+        <p class="product-info" style="font-weight:700;color:var(--accent-orange);" id="paymentPrice">500 FCFA</p>
+        
+        <div class="payment-options">
+            <div class="payment-option" data-method="mixx" onclick="selectPayment('mixx')">
+                <div class="payment-option-icon mixx">M</div>
+                <div class="payment-option-info">
+                    <div class="name">Mixx by Yas</div>
+                    <div class="desc">Paiement mobile</div>
+                </div>
+                <div class="payment-option-radio"></div>
+            </div>
+            
+            <div class="payment-option" data-method="moov" onclick="selectPayment('moov')">
+                <div class="payment-option-icon moov">M</div>
+                <div class="payment-option-info">
+                    <div class="name">Moov Money</div>
+                    <div class="desc">Paiement mobile</div>
+                </div>
+                <div class="payment-option-radio"></div>
+            </div>
+        </div>
+        
+        <button class="payment-confirm-btn" id="paymentConfirmBtn" disabled onclick="confirmPayment()">
+            <i class="fas fa-phone-alt"></i> Payer maintenant
+        </button>
+        <p style="font-size:0.7rem;color:var(--text-soft);margin-top:12px;text-align:center;">
+            <i class="fas fa-lock"></i> Transaction sécurisée via Mobile Money
+        </p>
+    </div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+// =========================================
+// DONNÉES DES IMAGES IA
+// =========================================
+const iaImages = [
+    // === GRATUITES ===
+    {
+        id: 1,
+        title: "Aurore Boréale",
+        category: "paysage",
+        type: "free",
+        price: 0,
+        prompt: "Aurora borealis over a frozen lake in Iceland, northern lights, purple and green sky, reflection on water, ultra detailed, 4k, photorealistic",
+        image: "ia-aurora.jpg",
+        description: "Photo gratuite - Aurore boréale en Islande"
+    },
+    {
+        id: 2,
+        title: "Cyberpunk City",
+        category: "cyber",
+        type: "free",
+        price: 0,
+        prompt: "Cyberpunk city at night, neon lights, rain, reflections on wet streets, futuristic buildings, Blade Runner style, highly detailed, 8k",
+        image: "ia-cyberpunk.jpg",
+        description: "Photo gratuite - Ville cyberpunk"
+    },
+    {
+        id: 3,
+        title: "Portrait Éthéré",
+        category: "portrait",
+        type: "free",
+        price: 0,
+        prompt: "Ethereal portrait of a young woman with flowers in her hair, soft lighting, dreamy atmosphere, golden hour, bokeh, artstation trending, highly detailed",
+        image: "ia-portrait-eth.jpg",
+        description: "Photo gratuite - Portrait éthéré"
+    },
+    {
+        id: 4,
+        title: "Forêt Enchantée",
+        category: "paysage",
+        type: "free",
+        price: 0,
+        prompt: "Enchanted forest with glowing mushrooms, mystical atmosphere, blue and purple tones, fog, rays of light through trees, fantasy art, highly detailed",
+        image: "ia-foret.jpg",
+        description: "Photo gratuite - Forêt enchantée"
+    },
+    {
+        id: 5,
+        title: "Abstrait Géométrique",
+        category: "abstract",
+        type: "free",
+        price: 0,
+        prompt: "Abstract geometric shapes, vibrant colors, 3D render, modern art, gradient background, minimalistic, high quality, 4k",
+        image: "ia-abstrait.jpg",
+        description: "Photo gratuite - Abstrait géométrique"
+    },
+    
+    // === PREMIUM ===
+    {
+        id: 6,
+        title: "Dragon Celeste",
+        category: "cyber",
+        type: "premium",
+        price: 500,
+        prompt: "Celestial dragon flying over a futuristic city, detailed scales, glowing eyes, neon lights, epic composition, 8k, concept art, trending on ArtStation",
+        image: "ia-dragon.jpg",
+        description: "Image premium - Dragon céleste"
+    },
+    {
+        id: 7,
+        title: "Reine des Fleurs",
+        category: "portrait",
+        type: "premium",
+        price: 500,
+        prompt: "Queen of flowers, ultra detailed portrait, floral crown, intricate details, golden hour, bokeh, 8k, photorealistic, artstation",
+        image: "ia-reine.jpg",
+        description: "Image premium - Reine des fleurs"
+    },
+    {
+        id: 8,
+        title: "Mécanique Rêveuse",
+        category: "cyber",
+        type: "premium",
+        price: 500,
+        prompt: "Dreamy steampunk mechanic, intricate gears, goggles, glowing cogs, industrial background, warm tones, highly detailed, 4k",
+        image: "ia-mecanique.jpg",
+        description: "Image premium - Mécanique rêveuse"
+    },
+    {
+        id: 9,
+        title: "Cascade Cosmique",
+        category: "paysage",
+        type: "premium",
+        price: 500,
+        prompt: "Cosmic waterfall in space, stars falling like water, nebula background, surreal atmosphere, 8k, ultra detailed, fantasy art",
+        image: "ia-cascade.jpg",
+        description: "Image premium - Cascade cosmique"
+    },
+    {
+        id: 10,
+        title: "Portrait d'IA",
+        category: "portrait",
+        type: "premium",
+        price: 500,
+        prompt: "AI generated portrait of a futuristic being, cybernetic implants, holographic elements, neon highlights, 8k, concept art",
+        image: "ia-iaportrait.jpg",
+        description: "Image premium - Portrait d'IA"
+    }
+];
+
+// =========================================
+// ÉTAT
+// =========================================
+let currentFilter = 'all';
+let currentTab = 'all';
+let selectedPayment = null;
+let currentProduct = null;
+
+// =========================================
+// RENDU DES CARTES
+// =========================================
+function renderGallery() {
+    const grid = document.getElementById('ia-grid');
+    let filtered = iaImages;
+    
+    // Filtrer par type (gratuit/premium)
+    if (currentTab !== 'all') {
+        filtered = filtered.filter(img => img.type === currentTab);
+    }
+    
+    // Filtrer par catégorie
+    if (currentFilter !== 'all') {
+        filtered = filtered.filter(img => img.category === currentFilter);
+    }
+    
+    if (filtered.length === 0) {
+        grid.innerHTML = `
+            <div class="ia-empty" style="grid-column:1/-1;">
+                <i class="fas fa-search"></i>
+                <p>Aucune image trouvée pour cette catégorie.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    grid.innerHTML = filtered.map(img => {
+        const priceDisplay = img.type === 'free' 
+            ? '<span class="ia-tag free"><i class="fas fa-gift"></i> Gratuit</span>'
+            : `<span class="ia-price">${img.price} FCFA</span>`;
+        
+        const button = img.type === 'free'
+            ? `<button class="ia-btn-buy" style="background:#2ed573;" onclick="downloadFreeImage('${img.id}')">
+                <i class="fas fa-download"></i> Télécharger
+               </button>`
+            : `<button class="ia-btn-buy" onclick="openPaymentModal('${img.id}')">
+                <i class="fas fa-shopping-cart"></i> Acheter
+               </button>`;
+        
+        return `
+            <div class="ia-card" data-type="${img.type}" data-category="${img.category}">
+                <img 
+                    src="${img.image}" 
+                    alt="${img.title}" 
+                    class="ia-card-image" 
+                    onerror="this.src='https://via.placeholder.com/400x300/333/fff?text=${encodeURIComponent(img.title)}'"
+                    onclick="openLightbox('${img.image}', '${img.title} - ${img.description}')"
+                >
+                <div class="ia-card-body">
+                    <h3>${img.title}</h3>
+                    <div class="prompt">
+                        "${img.prompt}"
+                        <span class="see-more" onclick="alert('Prompt complet :\\n${img.prompt}')">voir plus</span>
+                    </div>
+                    <div class="ia-card-footer">
+                        ${priceDisplay}
+                        ${button}
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// =========================================
+// TÉLÉCHARGEMENT GRATUIT
+// =========================================
+function downloadFreeImage(id) {
+    const img = iaImages.find(i => i.id == id);
+    if (!img) return;
+    
+    // Créer un lien de téléchargement
+    const link = document.createElement('a');
+    link.href = img.image;
+    link.download = `${img.title}-big-floow.jpg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    showToast(`✅ ${img.title} téléchargée ! N'hésitez pas à partager avec #BiGFlooW`, 'success');
+}
+
+// =========================================
+// MODAL DE PAIEMENT
+// =========================================
+function openPaymentModal(id) {
+    const img = iaImages.find(i => i.id == id);
+    if (!img) return;
+    
+    currentProduct = img;
+    document.getElementById('paymentProductInfo').textContent = img.title;
+    document.getElementById('paymentPrice').textContent = `${img.price} FCFA`;
+    
+    // Réinitialiser la sélection
+    selectedPayment = null;
+    document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('selected'));
+    document.getElementById('paymentConfirmBtn').disabled = true;
+    
+    document.getElementById('paymentModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePaymentModal() {
+    document.getElementById('paymentModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function selectPayment(method) {
+    selectedPayment = method;
+    document.querySelectorAll('.payment-option').forEach(el => {
+        el.classList.toggle('selected', el.dataset.method === method);
+    });
+    document.getElementById('paymentConfirmBtn').disabled = false;
+}
+
+function confirmPayment() {
+    if (!selectedPayment || !currentProduct) return;
+    
+    const btn = document.getElementById('paymentConfirmBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirection...';
+    
+    // Construire le code USSD
+    let ussdCode;
+    if (selectedPayment === 'mixx') {
+        ussdCode = `*145*1*${currentProduct.price}*90498680#`;
+    } else { // moov
+        ussdCode = `*155*1*1*97160873*${currentProduct.price}#`;
+    }
+    
+    // Rediriger vers l'appel téléphonique
+    setTimeout(() => {
+        // Sur mobile, ouvrir le téléphone avec le code USSD
+        window.location.href = `tel:${ussdCode}`;
+        
+        // Alternative : copier dans le presse-papiers pour les utilisateurs qui ne peuvent pas appeler
+        navigator.clipboard.writeText(ussdCode).then(() => {
+            showToast(`📋 Code copié : ${ussdCode}\nAppelez ce code pour payer`, 'success');
+        }).catch(() => {
+            showToast(`📱 Composez : ${ussdCode}`, 'warning');
+        });
+        
+        closePaymentModal();
+        btn.innerHTML = '<i class="fas fa-check"></i> Payé !';
+        btn.disabled = false;
+        
+        // Envoyer une notification WhatsApp de confirmation
+        setTimeout(() => {
+            const msg = `Bonjour BiG FlooW 👋\n\nJe viens d'acheter l'image IA "${currentProduct.title}"\nPaiement via ${selectedPayment === 'mixx' ? 'Mixx by Yas' : 'Moov Money'}\nMontant : ${currentProduct.price} FCFA\n\nMerci !`;
+            window.open(`https://wa.me/22890498680?text=${encodeURIComponent(msg)}`, '_blank');
+        }, 1000);
+    }, 800);
+}
+
+// Fermer la modal en cliquant à l'extérieur
+document.getElementById('paymentModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('paymentModal')) {
+        closePaymentModal();
+    }
+});
+
+// =========================================
+// FILTRES ET ONGLETS
+// =========================================
+document.querySelectorAll('.ia-tab-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.ia-tab-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentTab = this.dataset.tab;
+        renderGallery();
+    });
+});
+
+document.querySelectorAll('.ia-filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.ia-filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentFilter = this.dataset.filter;
+        renderGallery();
+    });
+});
+
+// =========================================
+// INITIALISATION
+// =========================================
+document.addEventListener('DOMContentLoaded', function() {
+    renderGallery();
+    
+    // Thème
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    function updateIcon(isDark) {
+        if (!themeToggle) return;
+        const icon = themeToggle.querySelector('i');
+        if (isDark) icon?.classList.replace('fa-moon', 'fa-sun');
+        else icon?.classList.replace('fa-sun', 'fa-moon');
+    }
+    function applyTheme(isDark) {
+        body.classList.toggle('dark-theme', isDark);
+        updateIcon(isDark);
+        localStorage.setItem('bigfloow-theme', isDark ? 'dark' : 'light');
+    }
+    const saved = localStorage.getItem('bigfloow-theme');
+    if (saved === 'dark') applyTheme(true);
+    else if (saved === 'light') applyTheme(false);
+    else applyTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => applyTheme(!body.classList.contains('dark-theme')));
+    }
+});
+
+// =========================================
+// FONCTIONS FOOTER (copiées depuis index.html)
+// =========================================
+window.sendFooterDevis = function(e) {
+    e.preventDefault();
+    const name = document.getElementById('devis-name')?.value.trim();
+    const service = document.getElementById('devis-service')?.value;
+    const budget = document.getElementById('devis-budget')?.value.trim();
+    if (!name || !service) {
+        showToast('Veuillez remplir nom et service', 'warning');
+        return;
+    }
+    let msg = `Bonjour BiG FlooW 👋\n\nDevis :\nNom : ${name}\nService : ${service}`;
+    if (budget) msg += `\nBudget : ${budget} FCFA`;
+    msg += '\n\nMerci !';
+    window.open(`https://wa.me/22890498680?text=${encodeURIComponent(msg)}`, '_blank');
+    showToast('Demande de devis envoyée !');
+    document.getElementById('devis-name').value = '';
+    document.getElementById('devis-service').value = '';
+    if (document.getElementById('devis-budget')) document.getElementById('devis-budget').value = '';
+};
+
+window.subscribeNewsletter = function() {
+    const email = document.getElementById('newsletter-email')?.value.trim();
+    if (!email || !email.includes('@')) {
+        showToast('❌ Veuillez entrer une adresse email valide.', 'error');
+        return;
+    }
+    const btn = document.querySelector('.newsletter-btn');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> En cours...';
+    btn.disabled = true;
+    fetch('https://formspree.io/f/mnjrjqaa', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+    })
+    .then(response => {
+        if (response.ok) {
+            showToast('✅ Merci de votre abonnement 😊 Vous serez informé de nos prochaines actualités !', 'success');
+            document.getElementById('newsletter-email').value = '';
+        } else {
+            showToast('❌ Une erreur est survenue. Réessayez plus tard.', 'error');
+        }
+    })
+    .catch(() => showToast('❌ Erreur réseau. Vérifiez votre connexion.', 'error'))
+    .finally(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    });
+};
+
+function showToast(message, type = 'success') {
+    const existingToast = document.querySelector('.toast-notification');
+    if (existingToast) existingToast.remove();
+    const toast = document.createElement('div');
+    toast.className = `toast-notification toast-${type}`;
+    const icons = { success: '😊', error: '❌', warning: '⚠️' };
+    toast.innerHTML = `
+        <div class="toast-content">
+            <span class="toast-icon">${icons[type] || 'ℹ️'}</span>
+            <span class="toast-message">${message}</span>
+            <button class="toast-close">&times;</button>
+        </div>
+        <div class="toast-progress"></div>
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.classList.add('show'), 10);
+    const timeout = setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.parentNode && toast.remove(), 300);
+    }, 5000);
+    const closeBtn = toast.querySelector('.toast-close');
+    closeBtn.addEventListener('click', () => {
+        clearTimeout(timeout);
+        toast.classList.remove('show');
+        setTimeout(() => toast.parentNode && toast.remove(), 300);
+    });
+}
+
+// Lightbox (pour agrandir les images)
+window.openLightbox = function(src, cap) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    if (lightboxImg && lightboxCaption) {
+        lightboxImg.src = src;
+        lightboxCaption.textContent = cap || 'Création BiG FlooW';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+};
+
+window.closeLightbox = function() {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+};
+
+// Chatbot
+let chatbaseLoaded = false;
+window.toggleChatbot = function() {
+    if (!chatbaseLoaded) {
+        const script = document.createElement('script');
+        script.src = "https://www.chatbase.co/embed.min.js";
+        script.id = "lamcS_rk7GxldSZ8_1qHN";
+        script.domain = "www.chatbase.co";
+        script.onload = () => {
+            if (window.chatbase) {
+                window.chatbase('show');
+                window.chatbase('open');
+            }
+        };
+        document.body.appendChild(script);
+        chatbaseLoaded = true;
+        window.chatbaseConfig = { chatbotId: "lamcS_rk7GxldSZ8_1qHN", defaultOpen: false, hideButton: true };
+    } else {
+        if (window.chatbase) {
+            window.chatbase('show');
+            window.chatbase('open');
+        }
+    }
+};
+</script>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="Aperçu" class="lightbox-content">
+    <div id="lightbox-caption"></div>
+</div>
+
+</body>
+</html>
