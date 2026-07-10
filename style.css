@@ -602,11 +602,28 @@ body.dark-theme .legal-btn:hover {
     background: var(--accent-blue);
 }
 
+/* Harmonisation des logos : les deux en cercle */
 .dav-round-logo {
     border-radius: 50%;
     object-fit: cover;
     width: 100px;
     height: 100px;
+}
+
+/* Appliquer la même forme au logo BiG FlooW */
+.big-round-logo {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+}
+
+/* Supprimer l'effet de rotation sur le survol pour plus d'harmonie */
+.dav-round-logo:hover, 
+.big-round-logo:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05); /* seulement l'agrandissement, pas de rotation */
 }
 
 /* =========================================
